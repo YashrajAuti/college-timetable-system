@@ -1,0 +1,2264 @@
+export const DEFAULT_TEACHERS = [
+  {
+    "id": "c3c80f29-0b25-4c3a-943f-9611c7ebc9af",
+    "name": "Prof. Nirmal B. L.",
+    "employeeId": "NBL",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "3b41e6d6-e908-4ea2-9314-b666ddb3e81a",
+    "name": "Prof. Barangle Shraddha",
+    "employeeId": "BS",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ddc89188-95e2-4701-85d3-882a16c07d9b",
+    "name": "Prof. P. V. Deshmukh",
+    "employeeId": "PVD",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5871dde0-6e4b-4e16-b916-27e564cfd54a",
+    "name": "Dr. Y. V. Patil",
+    "employeeId": "YVP",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "03472eb5-b5d8-4695-9ec8-e3b5ba0ec5bb",
+    "name": "Dr. S. S. Chaudhari",
+    "employeeId": "SSC",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "8fe89957-41df-4c78-8d28-24641f202593",
+    "name": "Dr. P. B. Dhamdhere",
+    "employeeId": "PBD",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "10967ebe-a20e-4226-898c-ebb37fe3a31e",
+    "name": "Dr. M. Y. Dangore",
+    "employeeId": "MYD",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ec032df6-c727-4087-9442-a43662d869bf",
+    "name": "Prof. Dinesh Satre",
+    "employeeId": "DBS",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "46d1fbc3-d2bc-4cc3-a421-38e7eb8384bc",
+    "name": "Prof. Devyani Bonde",
+    "employeeId": "DJB",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "4d14e164-d913-4245-aa7c-5451e9f1721e",
+    "name": "Prof. M. S. Jagtap",
+    "employeeId": "MSJ",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ebeb1721-217d-46ad-b68a-51397678dc43",
+    "name": "Prof. Y. B. Dongare",
+    "employeeId": "YBD",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "25f7912a-dc17-4193-9419-fc8f0ea0d71d",
+    "name": "Dr. S. K. Patil",
+    "employeeId": "SKP",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5f53af26-6b99-46bb-9dd4-89d77639dcdd",
+    "name": "Dr. M. V. Kadam",
+    "employeeId": "MVK",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a5fd55df-610e-4040-81dd-0f197e967723",
+    "name": "Dr. S. G. Rathod",
+    "employeeId": "SGR",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9342a084-512c-449c-a25a-9088bf6f1e16",
+    "name": "Dr. M. D. Salunke",
+    "employeeId": "MDS",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "42e9d994-20e1-40a3-a476-7adf74dec7c7",
+    "name": "Prof. S. A. Agrawal",
+    "employeeId": "SAA",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a83e095a-ef3a-4c04-8f24-485d4928c5a4",
+    "name": "Dr. J. P. Shinde",
+    "employeeId": "JPS",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "1b502479-0973-4b52-9fd6-dfac29f56e67",
+    "name": "Prof. U. B. Karanje",
+    "employeeId": "UBK",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5e165de1-49af-4939-8eb8-a247d5f263c0",
+    "name": "Prof. Nutan Sarode",
+    "employeeId": "NS",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "d430c42d-9345-45ee-8463-43ac95882332",
+    "name": "Prof. T. S. Bhoye",
+    "employeeId": "TSB",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5861d9ee-15c1-4989-bfed-68006c887300",
+    "name": "Prof. Y. P. Warke",
+    "employeeId": "YPW",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a0e5d709-9086-4822-ad2e-109cc9ccea4c",
+    "name": "Prof. S. Bhakare",
+    "employeeId": "SB",
+    "departmentId": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+    "department": {
+      "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+      "name": "Computer Engineering",
+      "code": "CE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "197ac8fb-0c31-4d58-b25d-783aceda5631",
+          "name": "Computer Engineering",
+          "code": "CE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "c833ad39-8647-47de-8f54-3655e1398b5e",
+    "name": "Dr. Anjali J. Joshi",
+    "employeeId": "AJJ",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "bcd1e67f-f89d-4cd8-9046-37d60608d13f",
+    "name": "Dr. Amol S. Bhange",
+    "employeeId": "ASB",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "c45f18c7-c4fe-4948-8077-279c8106bd10",
+    "name": "Dr. Girish L. Allampallewar",
+    "employeeId": "GLA",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ba11bbfa-b95c-4e0c-aace-a117ca08dc7b",
+    "name": "Dr. Bhuvaneshwar D. Patil",
+    "employeeId": "BDP",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "bc762321-40a4-4b59-8ca2-c00a3a25d23b",
+    "name": "Dr. Sachin V. Mutalikdesai",
+    "employeeId": "SVM",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "813cd191-1920-4334-93c7-d2596124c117",
+    "name": "Dr. Dayanand P. Yesane",
+    "employeeId": "DPY",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2d578bd7-13cd-4f35-9666-5cc8ff9d7f1f",
+    "name": "Mr. Eknath D. Kurhe",
+    "employeeId": "EDK",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "79056709-3034-4a38-beee-e65c6315727b",
+    "name": "Mr. Sudhir S. More",
+    "employeeId": "SSM",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9886f674-dfff-4d3f-9c27-0e956a48e043",
+    "name": "Mr. Naresh B. Dhamane",
+    "employeeId": "NBD",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "852b25fd-7c6e-4e7a-a464-42f2cc79510f",
+    "name": "Mr. Dhananjay M. Bhoge",
+    "employeeId": "DMB",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "f9803598-178e-4dc8-ab32-ba38f2b58cdb",
+    "name": "Mr. Rohit P. Polas",
+    "employeeId": "RPP",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "f446e536-0a21-41c3-b952-fb48d95a6ca9",
+    "name": "Mr. Rajesh P. Dharmale",
+    "employeeId": "RPD",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "1982e2f1-a930-4da9-a600-da86fe13535c",
+    "name": "Mr. Martand P. Pandagale",
+    "employeeId": "MPP",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cf439b2e-f5d6-4204-b111-962bfecbea79",
+    "name": "Mr. Hrishikesh Gadekar",
+    "employeeId": "HG",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b6d9c30a-7346-43b1-a112-165edd499add",
+    "name": "Mr. Pankaj S. Thombare",
+    "employeeId": "PST",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a0c18e57-495e-4152-95a6-25b433b1f962",
+    "name": "Mr. Sandeep L. Adsure",
+    "employeeId": "SLA",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "7da05903-8652-4e78-bece-91d4c637040d",
+    "name": "Mr. Naikrao J. Dandare",
+    "employeeId": "NJD",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      }
+    ]
+  },
+  {
+    "id": "88df9c8f-8183-4f51-8218-cd7ed1d80d46",
+    "name": "Mrs. Laxmi Pravin Shinde",
+    "employeeId": "LPS",
+    "departmentId": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+    "department": {
+      "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+      "name": "Mechanical Engineering",
+      "code": "ME"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "643d2c50-9c3d-4fb3-b331-f8748e9689b6",
+          "name": "Mechanical Engineering",
+          "code": "ME"
+        }
+      },
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "01d452b4-e2f1-4e71-acd4-7a346548fff7",
+    "name": "Dr. Atul P. Khatri",
+    "employeeId": "APK",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b4db5b07-c387-4632-b22f-4ba524c14b68",
+    "name": "Ms. Manisha D. Bhise",
+    "employeeId": "MDB",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      },
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a0c3ed10-92d8-4b76-a296-13507baa9d12",
+    "name": "Mrs. Leena A. Deshmukh",
+    "employeeId": "LAD",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9e03afde-f01c-4d4d-b599-3ac6e62bf3bc",
+    "name": "Ms. Punam Bhimrao Kokate",
+    "employeeId": "PBK",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "eecc7d27-b21f-4e0e-8dd6-af5684efb102",
+    "name": "Ms. Prajkta Dhananjay Shinde",
+    "employeeId": "PDS",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "85c47190-b283-454c-ae8e-6e7876bad196",
+    "name": "Dr. Akshay Anil Thakare",
+    "employeeId": "AAT",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "770ebfdf-f761-4aa9-8fa0-3134736548a2",
+    "name": "Ms. Gayatri Chandrakant Sherkar",
+    "employeeId": "GCS",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "f20352fd-224a-4f1e-a27e-a8455def027b",
+    "name": "Kishor Balasaheb Narwade",
+    "employeeId": "KBN",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "e85f887a-9b5b-47b0-9ec1-4251b4b12121",
+    "name": "Dr. Shubhangi Arun Kakade",
+    "employeeId": "SAK",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "59c560dc-b77e-4250-90b9-632e915b0376",
+    "name": "Madan Prabhakar Pawar",
+    "employeeId": "MPP2",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ae8c92a9-9514-48b3-aafa-94088c3054cc",
+    "name": "Mr. Nikhil Gurav",
+    "employeeId": "NG",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a5a48643-3156-4769-b21d-fbae8cdd2805",
+    "name": "Mr. Chaitanya Anantkumar Shetgar",
+    "employeeId": "CAS",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2ffe9417-68b6-4130-97ed-8361ba638366",
+    "name": "Mr. Rohan Mohan Shinde",
+    "employeeId": "RMS",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a1de184c-f6ef-4eeb-9221-0e375c35585f",
+    "name": "Mr. Ayan Asimkumar Sengupta",
+    "employeeId": "AAS",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "79f444a7-f590-4331-b552-3d6ef62e6c20",
+    "name": "Mr. Pandurang Nemane",
+    "employeeId": "PN",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "afb36c86-06f5-41dd-87fb-14fb5deb98ba",
+    "name": "Mr. Hemant Bhalerao",
+    "employeeId": "HB",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "8f4f47f9-8d75-4d30-9280-50d5eaf46dbd",
+    "name": "Mr. Rahul D. Tapkir",
+    "employeeId": "RDT",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "c0fe3b5e-a1a7-4f7a-80de-7a34bc56dcec",
+    "name": "Ms. Gayatri Kulkarni",
+    "employeeId": "GK",
+    "departmentId": "3392eae4-5234-49eb-8056-b42b0dbae630",
+    "department": {
+      "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+      "name": "Civil Engineering",
+      "code": "CIVIL"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3392eae4-5234-49eb-8056-b42b0dbae630",
+          "name": "Civil Engineering",
+          "code": "CIVIL"
+        }
+      }
+    ]
+  },
+  {
+    "id": "62c7a9c4-b388-4d20-bc86-d6ac1f44f3db",
+    "name": "Dr. Sonali S. Patil",
+    "employeeId": "SSP",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "6b40a2a5-1fd4-45ab-9f15-69522ed66c70",
+    "name": "Dr. Meghana R. Yashwante",
+    "employeeId": "MRY",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      },
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "6d774295-b9e0-4fa5-aa5c-becb3c1f999f",
+    "name": "Dr. Yogini Dilip Borole",
+    "employeeId": "YDB",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b810cba0-8ce0-477e-a6d6-32f035018d6c",
+    "name": "Dr. Jayashree Deka",
+    "employeeId": "JD",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9e5a1d01-d022-4d56-9639-02983a13b1f8",
+    "name": "Dr. Yogita Subhash Pimpale",
+    "employeeId": "YSP",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "54ab0b96-a94d-48a6-be52-1ffd1d38b02c",
+    "name": "Mayuri Sanjay Mhaske",
+    "employeeId": "MSM",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "d8d17b8d-380f-449c-8928-84becb448a53",
+    "name": "Madhuri Pradip Shejal",
+    "employeeId": "MPS",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "94cedf19-cf02-4fe1-bb17-3f64b2cc1b6a",
+    "name": "Mr. Nilesh Chandrakant Dhobale",
+    "employeeId": "NCD",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b32839f3-3893-445b-b3a7-a081a573eb72",
+    "name": "Mr. Akshay Ujjwal Padekar",
+    "employeeId": "AUP",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "0dd085d5-e934-4f39-b844-3dcf74195293",
+    "name": "Ms. Shital R. Khande",
+    "employeeId": "SRK",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "355d407c-42f5-4ffc-b679-34af111a19e9",
+    "name": "Mr. Vishal V. Kulkarni",
+    "employeeId": "VVK",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "3f406185-1a8b-4eea-b072-378b8a595c56",
+    "name": "Harshal Dattatray Vaidya",
+    "employeeId": "HDV",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      },
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "10c53b01-0199-412e-a24d-2498923894a5",
+    "name": "Mr. Sanket Ichharam Barde",
+    "employeeId": "SIB",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      },
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "fb472dd2-7178-45b5-903c-f3214bcd214a",
+    "name": "Mrs. Pallavi Vivek Munde",
+    "employeeId": "PVM",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      },
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ad4799e6-dbed-4117-be3b-5a474e501b97",
+    "name": "Dr. Dattatraya Arun Jadhav",
+    "employeeId": "DAJ",
+    "departmentId": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+    "department": {
+      "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+      "name": "Mechatronics Engineering",
+      "code": "MTE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "3c6b601e-1a83-4d0e-acb8-f755d3ca59b7",
+          "name": "Mechatronics Engineering",
+          "code": "MTE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cd78c551-df86-4116-8575-90d176b64833",
+    "name": "Dr. Amol S. Bhanage",
+    "employeeId": "ASB2",
+    "departmentId": "333d6dc6-798c-412e-a645-313c85eb2518",
+    "department": {
+      "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+      "name": "Robotics and AI Engineering",
+      "code": "RAI"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+          "name": "Robotics and AI Engineering",
+          "code": "RAI"
+        }
+      }
+    ]
+  },
+  {
+    "id": "e239aac4-467c-408f-8c16-88058606bd49",
+    "name": "Dr. Nilesh N. Satonkar",
+    "employeeId": "NNS",
+    "departmentId": "333d6dc6-798c-412e-a645-313c85eb2518",
+    "department": {
+      "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+      "name": "Robotics and AI Engineering",
+      "code": "RAI"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+          "name": "Robotics and AI Engineering",
+          "code": "RAI"
+        }
+      }
+    ]
+  },
+  {
+    "id": "0b1bc903-97e6-4a97-a601-eebce8efcc80",
+    "name": "Mr. Nilesh C. Dhobale",
+    "employeeId": "NCD2",
+    "departmentId": "333d6dc6-798c-412e-a645-313c85eb2518",
+    "department": {
+      "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+      "name": "Robotics and AI Engineering",
+      "code": "RAI"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+          "name": "Robotics and AI Engineering",
+          "code": "RAI"
+        }
+      }
+    ]
+  },
+  {
+    "id": "f9d208a3-c7a6-4915-9ab8-54fb60186cce",
+    "name": "Ms. Shilpa Namdeo Tambe",
+    "employeeId": "SNT",
+    "departmentId": "333d6dc6-798c-412e-a645-313c85eb2518",
+    "department": {
+      "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+      "name": "Robotics and AI Engineering",
+      "code": "RAI"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+          "name": "Robotics and AI Engineering",
+          "code": "RAI"
+        }
+      }
+    ]
+  },
+  {
+    "id": "db8d79c9-4a16-4323-95a2-d1469ba7ee6a",
+    "name": "Mr. Atul S. Pradhan",
+    "employeeId": "ASP",
+    "departmentId": "333d6dc6-798c-412e-a645-313c85eb2518",
+    "department": {
+      "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+      "name": "Robotics and AI Engineering",
+      "code": "RAI"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+          "name": "Robotics and AI Engineering",
+          "code": "RAI"
+        }
+      }
+    ]
+  },
+  {
+    "id": "c10eba4c-9c2d-4890-afba-dd983490fc8d",
+    "name": "Mr. Mohnesh D. Mandhre",
+    "employeeId": "MDM",
+    "departmentId": "333d6dc6-798c-412e-a645-313c85eb2518",
+    "department": {
+      "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+      "name": "Robotics and AI Engineering",
+      "code": "RAI"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "333d6dc6-798c-412e-a645-313c85eb2518",
+          "name": "Robotics and AI Engineering",
+          "code": "RAI"
+        }
+      }
+    ]
+  },
+  {
+    "id": "21fca4c9-cdb6-4380-9ce9-6a41bf18c02b",
+    "name": "Dr. Umesh P. Moharil",
+    "employeeId": "UPM",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cc445f0b-87ed-46c7-ba86-165ce7e681e8",
+    "name": "Dr. Amita Pal",
+    "employeeId": "AP",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "34ee7edf-4b13-4718-aa19-ffd234e963e0",
+    "name": "Dr. Anil G. Darekar",
+    "employeeId": "AGD",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "49918768-028a-4742-90c7-fa3274adb4eb",
+    "name": "Dr. Pratibha S. Desai",
+    "employeeId": "PSD",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b6a3a6ea-8133-49df-97a6-8b82abf591af",
+    "name": "Dr. Poonam Milind Nakhate",
+    "employeeId": "PMN",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "de7798d3-9f23-46f6-9fe9-864286f703d4",
+    "name": "Dr. Chhaya Joshi",
+    "employeeId": "CJ",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9a3a448a-e4d3-41a3-ac27-79c3cf04313d",
+    "name": "Mr. Mukesh Sharma",
+    "employeeId": "MS",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "a7278bf0-570d-46c8-a548-f8107ab73155",
+    "name": "Mrs. Vidya Nadkarni",
+    "employeeId": "VN",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "e593e21e-0fbc-4b39-afa4-ffa3690a9f96",
+    "name": "Mr. Rahul Balaso Mali",
+    "employeeId": "RBM",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ac76ffd1-dc30-4a63-a883-b3c22a60fceb",
+    "name": "Mr. Pankaj Shyamnarayan Gaur",
+    "employeeId": "PSG",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "1d6e906b-97c9-4a90-a34f-d238d3c90c30",
+    "name": "Mr. Tukaram Vinayakrao Patil",
+    "employeeId": "TVP",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "25e50df9-425c-421b-9bce-0daf19d88018",
+    "name": "Kulkarni Gayatri Shridhar",
+    "employeeId": "KGS",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b721e8be-577c-4c94-9f80-38148b585bf9",
+    "name": "Aishwarya Dattatray Pawar",
+    "employeeId": "ADP",
+    "departmentId": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+    "department": {
+      "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+      "name": "Engineering Sciences (FE)",
+      "code": "FE"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "ecdc710d-07a9-4dc3-9872-ece45211343b",
+          "name": "Engineering Sciences (FE)",
+          "code": "FE"
+        }
+      }
+    ]
+  },
+  {
+    "id": "539deb07-e300-440a-b8dc-6899d7cd1b5b",
+    "name": "Dr. Jyoti Yogesh Deshmukh",
+    "employeeId": "JYD",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "c0daf46d-8de7-4a65-a6e4-4df11e968edb",
+    "name": "Dr. Gaikwad Kiran Pandhari",
+    "employeeId": "GKP",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "bc44eca2-52e5-4dc4-881a-5fb00a104b99",
+    "name": "Dr. Shrikant Dnyaneshwar Dhamdhere",
+    "employeeId": "SDD",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "4aa7dbbc-8e9d-4d01-a178-3afebdb36f29",
+    "name": "Dr. Vandana Vinayak Navale",
+    "employeeId": "VVN",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ff0139e9-4875-4a5e-8e70-2ca1d3942a7d",
+    "name": "Mr. Nisar S. Shaikh",
+    "employeeId": "NSS",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "28e60535-9044-4b57-8361-faa5d4918a94",
+    "name": "Mrs. Rucha A. Agrawal",
+    "employeeId": "RAA",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "bfe60bd6-28c9-4deb-a59b-648d7ba2f62c",
+    "name": "Mr. Swapnil M. Gagare",
+    "employeeId": "SMG",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ec6798a9-5234-46d5-a9ad-955e4989dd59",
+    "name": "Mrs. Aparna Lahane",
+    "employeeId": "AL",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "660d96cd-1e0c-4110-aef9-7549a8cb52bd",
+    "name": "Mrs. Savitri Prashant Mane",
+    "employeeId": "SPM",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "7ed27e39-74a8-46da-bc5f-c1586d70ff26",
+    "name": "Mrs. Pallavi R. Gulve",
+    "employeeId": "PRG",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2b4533b9-9f6b-4353-b5c4-db3b8d119c64",
+    "name": "Mrs. Vanshika Bravish Bawaney",
+    "employeeId": "VBB",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "b66838d7-b38b-495a-81d0-04df63e4a42f",
+    "name": "Mrs. Neha Verma",
+    "employeeId": "NV",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "f670272c-327f-4f69-9098-763b20fa8d2b",
+    "name": "Deepika Dave",
+    "employeeId": "DD",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "7e924ce8-b379-43a4-a7b0-a6098c76d0c1",
+    "name": "Khushbu Trivedi",
+    "employeeId": "KT",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5119f802-f238-44a7-b14d-4f6007b1fd5f",
+    "name": "Ms. Swati Bagade",
+    "employeeId": "SB2",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "de7f2f5d-0fda-42d6-bd00-d73308262b1a",
+    "name": "Manisha Dinkar Wasnik",
+    "employeeId": "MDW",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "da6344a1-f892-4a4c-b4b1-794a29b7a5f1",
+    "name": "Nayan Vitthal Asane",
+    "employeeId": "NVA",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "5c96008c-76ef-42a9-bb1f-28673cfd05e7",
+    "name": "Hemangi Dhiraj Patil",
+    "employeeId": "HDP",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2a40030c-2f5e-431c-a631-3f8f24b4713c",
+    "name": "Mrs. Snehal Sandeep Thorave",
+    "employeeId": "SST",
+    "departmentId": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+    "department": {
+      "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+      "name": "Artificial Intelligence & Data Science",
+      "code": "AIDS"
+    },
+    "departments": [
+      {
+        "department": {
+          "id": "9ddcd5f0-6e71-4d8e-9bc6-333f2c9fbd2a",
+          "name": "Artificial Intelligence & Data Science",
+          "code": "AIDS"
+        }
+      }
+    ]
+  }
+];

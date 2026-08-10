@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 400" width="360" height="400">
+  <defs>
+    <style>
+      .blue-arch { stroke: #0018BD; stroke-width: 15; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .red-fill { fill: #E31837; }
+      .goddess-fill { fill: #FFFFFF; }
+      .goddess-line { stroke: #000000; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <!-- 1. Primary Red Solid Circle Backdrop -->
+  <circle cx="180" cy="185" r="115" class="red-fill" />
+
+  <!-- 2. Red Triangular Wings at Bottom Base -->
+  <polygon points="54,265 130,265 130,375" class="red-fill" />
+  <polygon points="306,265 230,265 230,375" class="red-fill" />
+
+  <!-- 3. Red M Monogram at Bottom Center -->
+  <path d="M 112 400 L 112 290 L 152 375 L 180 325 L 208 375 L 248 290 L 248 400"
+        fill="none" stroke="#E31837" stroke-width="16" stroke-linecap="square" stroke-linejoin="miter"/>
+
+  <!-- 4. Standalone Goddess Saraswati Figure (White Fill + Pure Black Outlines) -->
+  <g id="goddess-figure">
+    <!-- Body Base Silhouette Mask -->
+    <path d="M 110 235 C 95 190 115 150 145 130 C 145 90 170 60 180 60 C 190 60 215 90 215 130 C 245 150 265 190 250 235 L 235 320 L 125 320 Z" class="goddess-fill"/>
+
+    <!-- Crown (Mukut) Tiers -->
+    <path d="M 148 142 Q 180 135 212 142 L 216 120 Q 180 110 144 120 Z" fill="#FFFFFF" class="goddess-line"/>
+    <path d="M 152 120 Q 180 112 208 120 L 204 102 Q 180 92 156 102 Z" fill="#FFFFFF" class="goddess-line"/>
+    <path d="M 160 102 Q 180 94 200 102 L 194 86 Q 180 78 166 86 Z" fill="#FFFFFF" class="goddess-line"/>
+    <path d="M 168 86 Q 180 80 192 86 L 180 60 Z" fill="#FFFFFF" class="goddess-line"/>
+    <circle cx="180" cy="56" r="4.5" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+
+    <!-- Crown Pearl Decor Circles -->
+    <circle cx="164" cy="132" r="3" class="goddess-line"/>
+    <circle cx="174" cy="130" r="3" class="goddess-line"/>
+    <circle cx="186" cy="130" r="3" class="goddess-line"/>
+    <circle cx="196" cy="132" r="3" class="goddess-line"/>
+
+    <circle cx="168" cy="112" r="2.5" class="goddess-line"/>
+    <circle cx="180" cy="110" r="2.5" class="goddess-line"/>
+    <circle cx="192" cy="112" r="2.5" class="goddess-line"/>
+
+    <circle cx="180" cy="94" r="2.5" class="goddess-line"/>
+
+    <!-- Face Oval -->
+    <path d="M 150 142 C 140 175 152 202 180 204 C 208 202 220 175 210 142" fill="#FFFFFF" class="goddess-line"/>
+
+    <!-- Hair Locks -->
+    <path d="M 150 152 C 125 165 115 195 118 225" class="goddess-line"/>
+    <path d="M 145 162 C 120 175 110 205 113 235" class="goddess-line"/>
+    <path d="M 210 152 C 235 165 245 195 242 225" class="goddess-line"/>
+
+    <!-- Facial Features -->
+    <!-- Eyebrows -->
+    <path d="M 162 164 Q 170 160 176 165" class="goddess-line"/>
+    <path d="M 184 165 Q 190 160 198 164" class="goddess-line"/>
+    <!-- Eyes Downward Look -->
+    <path d="M 164 172 Q 170 177 176 172" class="goddess-line"/>
+    <path d="M 164 172 Q 170 169 176 172" class="goddess-line"/>
+    <path d="M 184 172 Q 190 177 196 172" class="goddess-line"/>
+    <path d="M 184 172 Q 190 169 196 172" class="goddess-line"/>
+    <!-- Nose & Lips -->
+    <path d="M 180 170 L 177 184 L 182 185" class="goddess-line"/>
+    <path d="M 174 192 Q 180 196 186 192" class="goddess-line"/>
+    <path d="M 176 192 Q 180 189 184 192" class="goddess-line"/>
+
+    <!-- Double Strand Pearl Necklace -->
+    <path d="M 146 190 Q 180 222 214 190" class="goddess-line" stroke-dasharray="3,4"/>
+    <path d="M 142 198 Q 180 234 218 198" class="goddess-line" stroke-dasharray="3,4"/>
+    <path d="M 170 216 L 160 310" class="goddess-line" stroke-dasharray="2,3"/>
+
+    <!-- Upper Body Sleeves & Dress -->
+    <path d="M 132 220 C 100 240 120 280 135 320" class="goddess-line"/>
+    <path d="M 228 220 C 260 240 240 280 225 320" class="goddess-line"/>
+
+    <!-- Right Arm & Hand Holding Lotus -->
+    <path d="M 135 230 Q 165 260 174 240" class="goddess-line"/>
+    <path d="M 125 240 Q 155 275 168 255" class="goddess-line"/>
+
+    <!-- Sacred Lotus Flower & Stem -->
+    <path d="M 170 245 L 168 222" stroke="#000000" stroke-width="2"/>
+    <path d="M 168 222 C 158 212 156 225 168 230 C 180 225 178 212 168 222 Z" fill="#FFFFFF" class="goddess-line"/>
+    <path d="M 168 222 C 162 215 160 223 168 227 C 176 223 174 215 168 222 Z" fill="#FFFFFF" class="goddess-line"/>
+
+    <!-- Left Arm & Hand Pointing Downward -->
+    <path d="M 225 230 Q 200 270 170 300" class="goddess-line"/>
+    <path d="M 215 238 Q 192 275 162 308" class="goddess-line"/>
+    <!-- Left Hand Fingers -->
+    <path d="M 170 300 Q 162 312 164 322" class="goddess-line"/>
+    <path d="M 167 302 Q 160 315 161 324" class="goddess-line"/>
+  </g>
+
+  <!-- 5. Standalone Blue Arch Frame (No Marathi Text) -->
+  <!-- Top Finial Knob -->
+  <path d="M 166 22 C 166 6 194 6 194 22" class="blue-arch"/>
+  <circle cx="180" cy="6" r="6" fill="#0018BD"/>
+
+  <!-- Main Arch Frame with Outward Stepped Base Feet -->
+  <path d="M 30 250
+           L 58 250
+           L 58 220
+           C 30 140 70 20 180 20
+           C 290 20 330 140 302 220
+           L 302 250
+           L 330 250"
+        class="blue-arch"/>
+</svg>

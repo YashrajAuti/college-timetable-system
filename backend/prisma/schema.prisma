@@ -1,0 +1,265 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String      @id @default(uuid())
+  email        String      @unique
+  passwordHash String
+  name         String
+  role         String      // e.g., SUPER_ADMIN, DEPT_ADMIN, FACULTY, STUDENT
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Department {
+  id                  String              @id @default(uuid())
+  name                String              @unique
+  code                String              @unique
+  users               User[]
+  teachers            Teacher[]           @relation("PrimaryDepartment")
+  associatedTeachers  TeacherDepartment[]
+  subjects            Subject[]
+  rooms               Room[]
+  courses             Course[]
+  isActive            Boolean             @default(true)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+}
+
+model Course {
+  id           String       @id @default(uuid())
+  name         String
+  departmentId String
+  department   Department   @relation(fields: [departmentId], references: [id])
+  years        CourseYear[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model CourseYear {
+  id        String     @id @default(uuid())
+  year      Int        // e.g., 1, 2, 3, 4
+  courseId  String
+  course    Course     @relation(fields: [courseId], references: [id])
+  divisions Division[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model Division {
+  id           String       @id @default(uuid())
+  name         String       // e.g., A, B, C
+  yearId       String
+  year         CourseYear   @relation(fields: [yearId], references: [id])
+  studentCount Int          @default(0)
+  batches      Batch[]
+  assignments  FacultyAssignment[]
+  masterSubjects TeacherSubjectMaster[]
+  entries      TimetableEntry[]
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Batch {
+  id           String       @id @default(uuid())
+  name         String       // e.g., A1, A2, A3
+  divisionId   String
+  division     Division     @relation(fields: [divisionId], references: [id])
+  studentCount Int          @default(0)
+  assignments  FacultyAssignment[]
+  entries      TimetableEntry[]
+  isActive     Boolean      @default(true)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Teacher {
+  id                  String              @id @default(uuid())
+  employeeId          String              @unique
+  name                String
+  email               String?             @unique
+  phone               String?
+  departmentId        String
+  department          Department          @relation("PrimaryDepartment", fields: [departmentId], references: [id])
+  departments         TeacherDepartment[]
+  designation         String?             @default("Faculty")
+  maxWeeklyHours      Int                 @default(40)
+  assignments         FacultyAssignment[]
+  masterSubjects      TeacherSubjectMaster[]
+  unavailableSlots    TeacherAvailability[]
+  entries             TimetableEntry[]
+  isActive            Boolean             @default(true)
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+}
+
+model TeacherDepartment {
+  id           String     @id @default(uuid())
+  teacherId    String
+  teacher      Teacher    @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([teacherId, departmentId])
+}
+
+model Subject {
+  id               String       @id @default(uuid())
+  name             String
+  code             String       @unique
+  departmentId     String
+  department       Department   @relation(fields: [departmentId], references: [id])
+  semester         Int
+  credits          Int
+  lectureHours     Int          @default(0)
+  tutorialHours    Int          @default(0)
+  practicalHours   Int          @default(0)
+  labRequired      Boolean      @default(false)
+  assignments      FacultyAssignment[]
+  masterSubjects   TeacherSubjectMaster[]
+  entries          TimetableEntry[]
+  isActive         Boolean      @default(true)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Room {
+  id               String       @id @default(uuid())
+  roomNumber       String       @unique
+  capacity         Int
+  departmentId     String
+  department       Department   @relation(fields: [departmentId], references: [id])
+  floor            String?
+  building         String?
+  projector        Boolean      @default(false)
+  smartClass       Boolean      @default(false)
+  isLab            Boolean      @default(false)
+  labType          String?      // e.g., Computer, Electronics, Mechanical
+  entries          TimetableEntry[]
+  availability     RoomAvailability[]
+  mappings         RoomMapping[]
+  isActive         Boolean      @default(true)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model FacultyAssignment {
+  id               String       @id @default(uuid())
+  teacherId        String
+  teacher          Teacher      @relation(fields: [teacherId], references: [id])
+  subjectId        String
+  subject          Subject      @relation(fields: [subjectId], references: [id])
+  divisionId       String
+  division         Division     @relation(fields: [divisionId], references: [id])
+  batchId          String?
+  batch            Batch?       @relation(fields: [batchId], references: [id])
+  weeklyHours      Int
+  type             String       // LECTURE, TUTORIAL, PRACTICAL, SEMINAR
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Timetable {
+  id               String       @id @default(uuid())
+  name             String
+  academicYear     String
+  semester         Int
+  isGenerated      Boolean      @default(false)
+  isValid          Boolean      @default(false)
+  entries          TimetableEntry[]
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model TimetableEntry {
+  id               String       @id @default(uuid())
+  timetableId      String
+  timetable        Timetable    @relation(fields: [timetableId], references: [id], onDelete: Cascade)
+  dayOfWeek        Int          // 1 (Monday) to 6 (Saturday)
+  slotIndex        Int
+  startTime        String       // e.g., 08:30
+  endTime          String       // e.g., 09:30
+  subjectId        String
+  subject          Subject      @relation(fields: [subjectId], references: [id])
+  teacherId        String
+  teacher          Teacher      @relation(fields: [teacherId], references: [id])
+  roomId           String
+  room             Room         @relation(fields: [roomId], references: [id])
+  divisionId       String
+  division         Division     @relation(fields: [divisionId], references: [id])
+  batchId          String?
+  batch            Batch?       @relation(fields: [batchId], references: [id])
+  type             String       // LECTURE, TUTORIAL, PRACTICAL
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model TimeSlot {
+  id               String       @id @default(uuid())
+  index            Int          // Sequential index (1, 2, 3...)
+  startTime        String       // e.g., "08:30"
+  endTime          String       // e.g., "09:30"
+  isBreak          Boolean      @default(false)
+  breakName        String?      // e.g., "Short Recess", "Lunch Break"
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model TeacherAvailability {
+  id               String       @id @default(uuid())
+  teacherId        String
+  teacher          Teacher      @relation(fields: [teacherId], references: [id])
+  dayOfWeek        Int
+  slotIndex        Int
+  isAvailable      Boolean      @default(false)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model RoomAvailability {
+  id               String       @id @default(uuid())
+  roomId           String
+  room             Room         @relation(fields: [roomId], references: [id])
+  dayOfWeek        Int
+  slotIndex        Int
+  isAvailable      Boolean      @default(true)
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model RoomMapping {
+  id           String    @id @default(uuid())
+  type         String    // "THEORY" or "PRACTICAL"
+  divisionId   String?   // For theory (e.g., SE-A)
+  subjectId    String?   // For practical (e.g., DSL)
+  batchId      String?   // For practical (e.g., A1)
+  roomId       String
+  room         Room      @relation(fields: [roomId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model TeacherSubjectMaster {
+  id           String    @id @default(uuid())
+  teacherId    String
+  teacher      Teacher   @relation(fields: [teacherId], references: [id])
+  divisionId   String
+  division     Division  @relation(fields: [divisionId], references: [id])
+  subjectId    String
+  subject      Subject   @relation(fields: [subjectId], references: [id])
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([teacherId, divisionId, subjectId])
+}

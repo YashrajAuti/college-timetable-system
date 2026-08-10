@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #F8F9FA;
+  --foreground: #222222;
+
+  --card: #FFFFFF;
+  --card-foreground: #222222;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #222222;
+
+  /* Official MMIT Red Palette */
+  --primary: #C8102E;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #A00C24;
+
+  --secondary: #E31837;
+  --secondary-foreground: #FFFFFF;
+
+  --muted: #F8F9FA;
+  --muted-foreground: #666666;
+
+  /* Light Red Tint Accent (#FEF2F2) */
+  --accent: #FEF2F2;
+  --accent-foreground: #C8102E;
+  --accent-border: #FCA5A5;
+
+  --destructive: #C8102E;
+  --destructive-foreground: #FFFFFF;
+
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #C8102E;
+
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-[#F8F9FA] text-[#222222] antialiased font-sans;
+  }
+}
+
+/* Institutional Card Styling */
+.mmit-card {
+  @apply bg-white rounded-lg border border-[#E5E7EB] shadow-xs hover:border-slate-300 transition-all duration-200;
+}
+
+.mmit-card-header {
+  @apply px-5 py-4 border-b border-[#E5E7EB] flex items-center justify-between bg-[#F8F9FA] rounded-t-lg;
+}
+
+/* Institutional Table Styling */
+.mmit-table-container {
+  @apply bg-white rounded-lg border border-[#E5E7EB] shadow-xs overflow-hidden;
+}
+
+.mmit-table {
+  @apply w-full text-left text-sm text-[#222222] border-collapse;
+}
+
+.mmit-table th {
+  @apply bg-[#C8102E] text-white px-4 py-3 font-bold border-b border-[#E5E7EB] text-xs uppercase tracking-wider select-none;
+}
+
+.mmit-table td {
+  @apply px-4 py-3 border-b border-[#E5E7EB] align-middle;
+}
+
+.mmit-table tr:nth-child(even) td {
+  @apply bg-[#F8F9FA];
+}
+
+.mmit-table tr:last-child td {
+  @apply border-b-0;
+}
+
+.mmit-table tr:hover td {
+  @apply bg-[#FEF2F2];
+}
+
+/* Primary MMIT Red Button Utility */
+.mmit-btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#C8102E] hover:bg-[#A00C24] text-white font-semibold text-sm rounded-md shadow-xs transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/50 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.mmit-btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-[#E5E7EB] font-semibold text-sm rounded-md shadow-xs transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.mmit-btn-outline-red {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-white hover:bg-[#FEF2F2] text-[#C8102E] border border-[#C8102E]/40 font-semibold text-sm rounded-md shadow-xs transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+/* Badge Utilities */
+.mmit-badge-red {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#FEF2F2] text-[#C8102E] border border-red-200/80;
+}
+
+.mmit-badge-blue {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200/60;
+}
+
+.mmit-badge-gray {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[#F8F9FA] text-[#666666] border border-[#E5E7EB];
+}
+
+.mmit-badge-emerald {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60;
+}
+
+.mmit-badge-amber {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200/60;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shake, .animate-pulse {
+    animation: none !important;
+  }
+}
