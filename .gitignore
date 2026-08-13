@@ -15,7 +15,6 @@ dist/
 build/
 
 # Database
-*.db
 *.db-journal
 
 # Logs
