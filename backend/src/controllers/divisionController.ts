@@ -22,7 +22,7 @@ export const deleteDivision = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await prisma.division.update({ 
-      where: { id },
+      where: { id: String(id) },
       data: { isActive: false }
     });
     res.json({ message: 'Division soft-deleted successfully' });

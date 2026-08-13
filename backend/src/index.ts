@@ -13,6 +13,7 @@ import statsRoutes from './routes/statsRoutes';
 import divisionRoutes from './routes/divisionRoutes';
 import allocationsRoutes from './routes/allocationsRoutes';
 import masterSubjectRoutes from './routes/masterSubjectRoutes';
+import settingsRoutes from './routes/settingsRoutes';
 
 dotenv.config();
 
@@ -23,7 +24,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 
 app.get('/health', async (req, res) => {
   try {
@@ -44,6 +45,7 @@ app.use('/api/stats', statsRoutes);
 app.use('/api/divisions', divisionRoutes);
 app.use('/api/allocations', allocationsRoutes);
 app.use('/api/master-subjects', masterSubjectRoutes);
+app.use('/api/settings', settingsRoutes);
 
 // Setup generic error handler
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {

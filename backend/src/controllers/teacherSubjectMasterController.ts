@@ -43,7 +43,7 @@ export const createMasterSubject = async (req: Request, res: Response) => {
 export const deleteMasterSubject = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await prisma.teacherSubjectMaster.delete({ where: { id } });
+    await prisma.teacherSubjectMaster.delete({ where: { id: String(id) } });
     res.json({ message: 'Deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Failed to delete mapping' });

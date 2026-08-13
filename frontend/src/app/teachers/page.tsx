@@ -50,7 +50,7 @@ export default function TeachersPage() {
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/departments');
+      const res = await fetch('http://localhost:5050/api/departments');
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -69,8 +69,8 @@ export default function TeachersPage() {
     try {
       setLoading(true);
       const url = deptId !== "ALL" 
-        ? `http://localhost:5000/api/teachers?departmentId=${deptId}`
-        : 'http://localhost:5000/api/teachers';
+        ? `http://localhost:5050/api/teachers?departmentId=${deptId}`
+        : 'http://localhost:5050/api/teachers';
       const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
@@ -132,7 +132,7 @@ export default function TeachersPage() {
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Are you sure you want to delete ${name}? This action cannot be undone.`)) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/teachers/${id}`, { method: 'DELETE' });
+      const res = await fetch(`http://localhost:5050/api/teachers/${id}`, { method: 'DELETE' });
       if (res.ok) fetchTeachers(selectedDeptId);
     } catch (err) {
       console.error("Error deleting teacher:", err);
@@ -150,7 +150,7 @@ export default function TeachersPage() {
       return;
     }
 
-    const url = isEdit ? `http://localhost:5000/api/teachers/${currentTeacher.id}` : `http://localhost:5000/api/teachers`;
+    const url = isEdit ? `http://localhost:5050/api/teachers/${currentTeacher.id}` : `http://localhost:5050/api/teachers`;
     const method = isEdit ? 'PUT' : 'POST';
 
     try {

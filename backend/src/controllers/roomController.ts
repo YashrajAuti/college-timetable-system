@@ -32,7 +32,7 @@ export const updateRoom = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { roomNumber, capacity, isLab, departmentId } = req.body;
     const room = await prisma.room.update({
-      where: { id },
+      where: { id: String(id) },
       data: { roomNumber, capacity: parseInt(capacity), isLab, departmentId }
     });
     res.json(room);
@@ -45,7 +45,7 @@ export const deleteRoom = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await prisma.room.update({
-      where: { id },
+      where: { id: String(id) },
       data: { isActive: false }
     });
     res.json({ message: 'Room soft-deleted successfully' });

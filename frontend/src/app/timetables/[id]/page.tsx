@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation';
 import { User, Users, Loader2, Printer, CheckCircle2, ShieldCheck, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
+import { exportTimetableToPDF } from '@/utils/generateTimetablePDF';
+
 export default function TimetableViewer() {
   const params = useParams();
   const timetableId = params.id as string;
@@ -31,12 +33,16 @@ export default function TimetableViewer() {
     { idx: 8, time: '14:30-15:30' },
   ];
 
+  const [completenessReport, setCompletenessReport] = useState<any>(null);
+  const [teacherWorkloadSummary, setTeacherWorkloadSummary] = useState<any>(null);
+
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:5000/api/teachers').then(res => res.json()),
-      fetch('http://localhost:5000/api/divisions').then(res => res.json()),
-      fetch(`http://localhost:5000/api/timetables/${timetableId}/entries`).then(res => res.json())
-    ]).then(([allTeachers, allDivisions, timetableEntries]) => {
+      fetch('http://localhost:5050/api/teachers').then(res => res.json()),
+      fetch('http://localhost:5050/api/divisions').then(res => res.json()),
+      fetch(`http://localhost:5050/api/timetables/${timetableId}/entries`).then(res => res.json()),
+      fetch(`http://localhost:5050/api/timetables/${timetableId}/completeness`).then(res => res.json())
+    ]).then(([allTeachers, allDivisions, timetableEntries, compReport]) => {
       const validTeacherIds = new Set(timetableEntries.map((e: any) => e.teacherId));
       const validDivisionIds = new Set(timetableEntries.map((e: any) => e.divisionId));
 
@@ -45,6 +51,7 @@ export default function TimetableViewer() {
 
       setTeachers(activeTeachers.length > 0 ? activeTeachers : allTeachers);
       setDivisions(activeDivisions.length > 0 ? activeDivisions : allDivisions);
+      if (compReport && (compReport.coverage || compReport.isValid !== undefined)) setCompletenessReport(compReport);
 
       if (viewType === 'TEACHER' && !selectedId) setSelectedId(activeTeachers[0]?.id || allTeachers[0]?.id || '');
       if (viewType === 'DIVISION' && !selectedId) setSelectedId(activeDivisions[0]?.id || allDivisions[0]?.id || '');
@@ -58,14 +65,22 @@ export default function TimetableViewer() {
     }
     setLoading(true);
     const endpoint = viewType === 'TEACHER'
-      ? `http://localhost:5000/api/timetables/${timetableId}/teacher/${selectedId}`
-      : `http://localhost:5000/api/timetables/${timetableId}/division/${selectedId}`;
+      ? `http://localhost:5050/api/timetables/${timetableId}/teacher/${selectedId}`
+      : `http://localhost:5050/api/timetables/${timetableId}/division/${selectedId}`;
 
     fetch(endpoint)
       .then(res => res.json())
       .then(data => {
-        if (Array.isArray(data)) setEntries(data);
-        else setEntries([]);
+        if (Array.isArray(data)) {
+          setEntries(data);
+          setTeacherWorkloadSummary(null);
+        } else if (data && Array.isArray(data.entries)) {
+          setEntries(data.entries);
+          setTeacherWorkloadSummary(data.workloadSummary || null);
+        } else {
+          setEntries([]);
+          setTeacherWorkloadSummary(null);
+        }
         setLoading(false);
       })
       .catch(err => {
@@ -90,7 +105,7 @@ export default function TimetableViewer() {
       if (!subjectLoadMap.has(e.subjectId)) {
         subjectLoadMap.set(e.subjectId, {
           subjectCode: e.subject?.code || 'SUB',
-          subjectName: `${e.subject?.code}: ${e.subject?.name}`,
+          subjectName: e.subject?.name || e.subject?.code || 'Subject',
           teachers: new Map()
         });
       }
@@ -140,7 +155,7 @@ export default function TimetableViewer() {
               <ShieldCheck className="w-4 h-4 text-emerald-600" /> Conflict Diagnostics
             </button>
             <button
-              onClick={() => window.print()}
+              onClick={() => exportTimetableToPDF('timetable-printable-area', `MMIT_Timetable_${className}_${activeDivision?.name || 'A'}.pdf`)}
               className="mmit-btn-primary cursor-pointer text-xs"
             >
               <Printer className="w-4 h-4" /> Print / Export PDF
@@ -155,7 +170,7 @@ export default function TimetableViewer() {
               <button
                 onClick={() => { setViewType('DIVISION'); setSelectedId(divisions[0]?.id || ''); }}
                 className={`px-3 py-1.5 rounded text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all ${
-                  viewType === 'DIVISION' ? 'bg-[#C8102E] text-white shadow-2xs' : 'text-[#666666] hover:text-[#222222]'
+                  viewType === 'DIVISION' ? 'bg-[#C8102E] text-[#ffffff] shadow-2xs' : 'text-[#666666] hover:text-[#222222]'
                 }`}
               >
                 <Users className="w-3.5 h-3.5" /> Class Division View
@@ -163,7 +178,7 @@ export default function TimetableViewer() {
               <button
                 onClick={() => { setViewType('TEACHER'); setSelectedId(teachers[0]?.id || ''); }}
                 className={`px-3 py-1.5 rounded text-xs font-bold flex items-center gap-1.5 cursor-pointer transition-all ${
-                  viewType === 'TEACHER' ? 'bg-[#C8102E] text-white shadow-2xs' : 'text-[#666666] hover:text-[#222222]'
+                  viewType === 'TEACHER' ? 'bg-[#C8102E] text-[#ffffff] shadow-2xs' : 'text-[#666666] hover:text-[#222222]'
                 }`}
               >
                 <User className="w-3.5 h-3.5" /> Faculty Schedule View
@@ -171,7 +186,7 @@ export default function TimetableViewer() {
             </div>
 
             <select
-              className="h-9 border border-[#E5E7EB] bg-white rounded-md px-3 text-xs font-semibold text-[#222222] focus:outline-none focus:border-[#C8102E]"
+              className="h-9 border border-[#E5E7EB] bg-[#ffffff] rounded-md px-3 text-xs font-semibold text-[#222222] focus:outline-none focus:border-[#C8102E]"
               value={selectedId}
               onChange={(e) => setSelectedId(e.target.value)}
             >
@@ -194,7 +209,7 @@ export default function TimetableViewer() {
                 onClick={() => setSelectedVariant(varNum)}
                 className={`px-2.5 py-1 rounded text-xs font-bold transition-all cursor-pointer ${
                   selectedVariant === varNum
-                    ? 'bg-[#C8102E] text-white shadow-2xs'
+                    ? 'bg-[#C8102E] text-[#ffffff] shadow-2xs'
                     : 'bg-[#F8F9FA] text-[#666666] border border-[#E5E7EB] hover:bg-slate-200'
                 }`}
               >
@@ -208,7 +223,7 @@ export default function TimetableViewer() {
       {/* Conflict Diagnostics Modal */}
       {isDiagnosticOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-lg shadow-2xl p-6 max-w-md w-full border border-[#E5E7EB]">
+          <div className="bg-[#ffffff] rounded-lg shadow-2xl p-6 max-w-md w-full border border-[#E5E7EB]">
             <div className="flex items-center justify-between pb-3 border-b border-[#E5E7EB] mb-4">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-emerald-600" />
@@ -241,15 +256,128 @@ export default function TimetableViewer() {
         </div>
       )}
 
+      {/* Workload Coverage Report Banner & Table */}
+      {completenessReport && (
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-2xs space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className={`px-2.5 py-0.5 rounded-full text-xs font-black uppercase ${completenessReport.isComplete ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-amber-100 text-amber-900 border border-amber-300'}`}>
+                  {completenessReport.isComplete ? 'COMPLETE (100% COVERAGE)' : 'INCOMPLETE WORKLOAD COVERAGE'}
+                </span>
+                <span className="text-xs font-bold text-slate-500">Dual Validation Layer</span>
+              </div>
+              <h2 className="text-lg font-black text-slate-900 mt-1">
+                Faculty Workload Completion Audit
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <p className="text-[10px] font-bold text-slate-400 uppercase">Coverage</p>
+                <p className="text-xl font-black text-[#C8102E]">{completenessReport.workloadCoveragePercent}%</p>
+              </div>
+              <div className="w-px h-8 bg-slate-200" />
+              <div className="text-center">
+                <p className="text-[10px] font-bold text-slate-400 uppercase">Mandatory Required</p>
+                <p className="text-sm font-bold text-slate-800">{completenessReport.requiredHours} hrs</p>
+              </div>
+              <div className="w-px h-8 bg-slate-200" />
+              <div className="text-center">
+                <p className="text-[10px] font-bold text-slate-400 uppercase">Scheduled</p>
+                <p className="text-sm font-bold text-emerald-600">{completenessReport.scheduledHours} hrs</p>
+              </div>
+              <div className="w-px h-8 bg-slate-200" />
+              <div className="text-center">
+                <p className="text-[10px] font-bold text-slate-400 uppercase">Remaining</p>
+                <p className="text-sm font-bold text-amber-600">{completenessReport.remainingHours} hrs</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Metrics Badges */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs font-semibold">
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg flex justify-between items-center">
+              <span className="text-slate-600">Total Assignments:</span>
+              <span className="font-bold text-slate-900">{completenessReport.totalAssignments}</span>
+            </div>
+            <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg flex justify-between items-center text-emerald-900">
+              <span>Fully Scheduled:</span>
+              <span className="font-bold">{completenessReport.fullyScheduled}</span>
+            </div>
+            <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg flex justify-between items-center text-amber-900">
+              <span>Partially Scheduled:</span>
+              <span className="font-bold">{completenessReport.partiallyScheduled}</span>
+            </div>
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg flex justify-between items-center text-red-900">
+              <span>Not Scheduled:</span>
+              <span className="font-bold">{completenessReport.notScheduled}</span>
+            </div>
+          </div>
+
+          {/* Assignment-Level Diagnostic Breakdown Table */}
+          {completenessReport.assignments && (
+            <div className="space-y-2 pt-2">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider">Assignment-Level Mandatory Coverage Breakdown</h3>
+                <span className="text-[11px] font-semibold text-blue-600">ⓘ Project hours are flexible & excluded from mandatory timetable coverage</span>
+              </div>
+              <div className="mmit-table-container max-h-60 overflow-y-auto">
+                <table className="mmit-table text-[11px]">
+                  <thead>
+                    <tr>
+                      <th>Faculty</th>
+                      <th>Course Code</th>
+                      <th>Course Name</th>
+                      <th>Class</th>
+                      <th>Div</th>
+                      <th>Batch</th>
+                      <th className="text-center">Mandatory Req</th>
+                      <th className="text-center">Scheduled</th>
+                      <th className="text-center">Remaining</th>
+                      <th className="text-center">Flexible Proj</th>
+                      <th className="text-center">Status</th>
+                      <th>Reason / Diagnostic</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {completenessReport.assignments.map((a: any, idx: number) => (
+                      <tr key={a.assignmentId || idx}>
+                        <td className="font-bold text-slate-900">{a.facultyName} ({a.facultyCode})</td>
+                        <td className="font-mono font-bold text-red-700">{a.courseCode}</td>
+                        <td className="font-semibold text-slate-800">{a.courseName}</td>
+                        <td>{a.className}</td>
+                        <td><span className="mmit-badge-blue">{a.divisionName}</span></td>
+                        <td><span className="mmit-badge-gray">{a.batchName}</span></td>
+                        <td className="text-center font-semibold">{a.requiredHours}h</td>
+                        <td className="text-center font-semibold text-emerald-600">{a.scheduledHours}h</td>
+                        <td className="text-center font-semibold text-amber-600">{a.remainingHours}h</td>
+                        <td className="text-center font-semibold text-blue-600">{a.flexibleProjectHours ? `${a.flexibleProjectHours}h (flexible)` : '-'}</td>
+                        <td className="text-center">
+                          {a.status === 'COMPLETE' && <span className="mmit-badge-emerald font-bold">COMPLETE</span>}
+                          {a.status === 'PARTIAL' && <span className="mmit-badge-amber font-bold">PARTIAL</span>}
+                          {a.status === 'NOT SCHEDULED' && <span className="mmit-badge-red font-bold">NOT SCHEDULED</span>}
+                        </td>
+                        <td className="text-slate-500 text-[10px] font-mono">{a.reason || '-'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Main Print Ready Institutional Timetable Grid */}
-      <div className="bg-white p-8 rounded-lg border border-[#E5E7EB] shadow-xs print:p-0 print:border-none print:shadow-none font-sans text-[#222222]">
+      <div className="bg-[#ffffff] p-8 rounded-lg border border-[#E5E7EB] shadow-xs print:p-0 print:border-none print:shadow-none font-sans text-[#222222]">
         {loading ? (
           <div className="py-20 text-center text-[#666666]">
             <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-[#C8102E]" />
             Loading class timetable matrix...
           </div>
         ) : (
-          <div className="max-w-[1100px] mx-auto print:max-w-none">
+          <div id="timetable-printable-area" className="max-w-[1100px] mx-auto print:max-w-none bg-[#ffffff] p-4">
             {/* INSTITUTIONAL HEADER */}
             <div className="text-center leading-tight mb-6">
               <div className="text-xs font-bold uppercase tracking-wider text-[#666666]">"Techno-Social Excellence"</div>
@@ -331,13 +459,18 @@ export default function TimetableViewer() {
                                 if (entry.type === 'PRACTICAL') {
                                   return (
                                     <div key={entry.id} className="text-xs font-semibold leading-tight text-[#222222] border border-[#E5E7EB] bg-white p-1 rounded">
-                                      <span className="font-bold text-[#C8102E]">{entry.batch?.name || 'A1'}:</span> {entry.subject?.code} ({empCode}) ({room})
+                                      <span className="font-bold text-[#C8102E]">{entry.batch?.name || 'A1'}:</span>{' '}
+                                      <span className="font-bold">{entry.subject?.name || entry.subject?.code}</span>
+                                      {entry.subject?.name && <span className="text-[#888] ml-0.5">[{entry.subject.code}]</span>}
+                                      {' '}({empCode}) ({room})
                                     </div>
                                   );
                                 }
                                 return (
                                   <div key={entry.id} className="text-xs font-bold leading-tight text-[#222222]">
-                                    {entry.subject?.code} ({empCode}) ({room})
+                                    <span>{entry.subject?.name || entry.subject?.code}</span>
+                                    {entry.subject?.name && <span className="text-[#888] font-normal ml-0.5 text-[10px]">[{entry.subject.code}]</span>}
+                                    {' '}({empCode}) ({room})
                                   </div>
                                 );
                               })

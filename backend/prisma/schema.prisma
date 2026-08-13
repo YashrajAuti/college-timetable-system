@@ -29,6 +29,7 @@ model Department {
   subjects            Subject[]
   rooms               Room[]
   courses             Course[]
+  assignments         FacultyAssignment[]
   isActive            Boolean             @default(true)
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
@@ -92,6 +93,9 @@ model Teacher {
   department          Department          @relation("PrimaryDepartment", fields: [departmentId], references: [id])
   departments         TeacherDepartment[]
   designation         String?             @default("Faculty")
+  shortCode           String?
+  isCodeFlagged       Boolean             @default(false)
+  codeFlagReason      String?
   maxWeeklyHours      Int                 @default(40)
   assignments         FacultyAssignment[]
   masterSubjects      TeacherSubjectMaster[]
@@ -115,23 +119,36 @@ model TeacherDepartment {
 }
 
 model Subject {
-  id               String       @id @default(uuid())
-  name             String
-  code             String       @unique
-  departmentId     String
-  department       Department   @relation(fields: [departmentId], references: [id])
-  semester         Int
-  credits          Int
-  lectureHours     Int          @default(0)
-  tutorialHours    Int          @default(0)
-  practicalHours   Int          @default(0)
-  labRequired      Boolean      @default(false)
-  assignments      FacultyAssignment[]
-  masterSubjects   TeacherSubjectMaster[]
-  entries          TimetableEntry[]
-  isActive         Boolean      @default(true)
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
+  id                String       @id @default(uuid())
+  name              String
+  code              String       @unique
+  departmentId      String
+  department        Department   @relation(fields: [departmentId], references: [id])
+  semester          Int
+  credits           Int
+  lectureHours      Int          @default(0)
+  tutorialHours     Int          @default(0)
+  practicalHours    Int          @default(0)
+  labRequired       Boolean      @default(false)
+  // Canonical subject tracking
+  isCanonical       Boolean      @default(true)
+  canonicalSubjectId String?     // points to canonical Subject.id when isCanonical=false
+  canonicalSubject  Subject?     @relation("CanonicalAlias", fields: [canonicalSubjectId], references: [id])
+  aliases           Subject[]    @relation("CanonicalAlias")
+  assignments       FacultyAssignment[]
+  masterSubjects    TeacherSubjectMaster[]
+  entries           TimetableEntry[]
+  isActive          Boolean      @default(true)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+}
+
+model SystemConfig {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String   // JSON-encoded value
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Room {
@@ -158,16 +175,49 @@ model FacultyAssignment {
   id               String       @id @default(uuid())
   teacherId        String
   teacher          Teacher      @relation(fields: [teacherId], references: [id])
+  departmentId     String?
+  department       Department?  @relation(fields: [departmentId], references: [id])
   subjectId        String
   subject          Subject      @relation(fields: [subjectId], references: [id])
   divisionId       String
   division         Division     @relation(fields: [divisionId], references: [id])
   batchId          String?
   batch            Batch?       @relation(fields: [batchId], references: [id])
+  className        String?      // e.g. SE, TE, BE, FE
+  divisionName     String?      // e.g. A, B, A & B
+  batchName        String?      // e.g. A1, B1,B2,B3,B4, A2,B2
+  courseCode       String?      // e.g. PCC301COM
+  courseName       String?      // e.g. Artificial Intelligence
+  theoryHours      Int          @default(0)
+  practicalHours   Int          @default(0)
+  tutorialHours    Int          @default(0)
+  projectHours     Int          @default(0)
+  totalHours       Int          @default(0)
   weeklyHours      Int
-  type             String       // LECTURE, TUTORIAL, PRACTICAL, SEMINAR
+  type             String       // LECTURE, TUTORIAL, PRACTICAL, SEMINAR, PROJECT
+  academicYear     String       @default("2024-25")
+  semester         Int?
+  status           String       @default("ACTIVE")
+  isFlagged        Boolean      @default(false)
+  flagReason       String?
+  rawLocation      String?
+  allowedLocations AssignmentAllowedLocation[]
+  entries          TimetableEntry[]
   createdAt        DateTime     @default(now())
   updatedAt        DateTime     @updatedAt
+}
+
+model AssignmentAllowedLocation {
+  id            String            @id @default(uuid())
+  assignmentId  String
+  assignment    FacultyAssignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  batchName     String            // e.g. A1, A2, B3, A1,A4
+  roomNumber    String            // e.g. C101, C108, E101
+  roomName      String?           // e.g. DBMS Lab, Server Room
+  isPreferred   Boolean           @default(false)
+
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
 }
 
 model Timetable {
@@ -183,26 +233,28 @@ model Timetable {
 }
 
 model TimetableEntry {
-  id               String       @id @default(uuid())
-  timetableId      String
-  timetable        Timetable    @relation(fields: [timetableId], references: [id], onDelete: Cascade)
-  dayOfWeek        Int          // 1 (Monday) to 6 (Saturday)
-  slotIndex        Int
-  startTime        String       // e.g., 08:30
-  endTime          String       // e.g., 09:30
-  subjectId        String
-  subject          Subject      @relation(fields: [subjectId], references: [id])
-  teacherId        String
-  teacher          Teacher      @relation(fields: [teacherId], references: [id])
-  roomId           String
-  room             Room         @relation(fields: [roomId], references: [id])
-  divisionId       String
-  division         Division     @relation(fields: [divisionId], references: [id])
-  batchId          String?
-  batch            Batch?       @relation(fields: [batchId], references: [id])
-  type             String       // LECTURE, TUTORIAL, PRACTICAL
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
+  id                  String             @id @default(uuid())
+  timetableId         String
+  timetable           Timetable          @relation(fields: [timetableId], references: [id], onDelete: Cascade)
+  facultyAssignmentId String?
+  facultyAssignment   FacultyAssignment? @relation(fields: [facultyAssignmentId], references: [id])
+  dayOfWeek           Int                // 1 (Monday) to 6 (Saturday)
+  slotIndex           Int
+  startTime           String             // e.g., 08:30
+  endTime             String             // e.g., 09:30
+  subjectId           String
+  subject             Subject            @relation(fields: [subjectId], references: [id])
+  teacherId           String
+  teacher             Teacher            @relation(fields: [teacherId], references: [id])
+  roomId              String
+  room                Room               @relation(fields: [roomId], references: [id])
+  divisionId          String
+  division            Division           @relation(fields: [divisionId], references: [id])
+  batchId             String?
+  batch               Batch?             @relation(fields: [batchId], references: [id])
+  type                String             // LECTURE, TUTORIAL, PRACTICAL
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
 }
 
 model TimeSlot {

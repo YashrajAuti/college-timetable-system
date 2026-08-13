@@ -88,13 +88,14 @@ export const createTeacher = async (req: Request, res: Response) => {
 export const updateTeacher = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
+    const teacherIdStr = String(id);
     const { name, employeeId, email, departmentId, designation } = req.body;
 
     if (employeeId) {
       const existingCode = await prisma.teacher.findFirst({
         where: {
           employeeId: employeeId.trim().toUpperCase(),
-          NOT: { id }
+          NOT: { id: teacherIdStr }
         }
       });
 
@@ -104,7 +105,7 @@ export const updateTeacher = async (req: Request, res: Response) => {
     }
 
     const teacher = await prisma.teacher.update({
-      where: { id },
+      where: { id: teacherIdStr },
       data: {
         name: name?.trim(),
         employeeId: employeeId?.trim().toUpperCase(),
@@ -127,12 +128,12 @@ export const updateTeacher = async (req: Request, res: Response) => {
       await prisma.teacherDepartment.upsert({
         where: {
           teacherId_departmentId: {
-            teacherId: id,
+            teacherId: teacherIdStr,
             departmentId: departmentId
           }
         },
         create: {
-          teacherId: id,
+          teacherId: teacherIdStr,
           departmentId: departmentId
         },
         update: {}
@@ -152,7 +153,7 @@ export const deleteTeacher = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await prisma.teacher.update({
-      where: { id },
+      where: { id: String(id) },
       data: { isActive: false }
     });
     res.json({ message: 'Teacher deactivated successfully' });

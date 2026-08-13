@@ -17,7 +17,7 @@ export const getDepartments = async (req: Request, res: Response) => {
 export const getDepartmentById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const department = await prisma.department.findFirst({ where: { id, isActive: true } });
+    const department = await prisma.department.findFirst({ where: { id: String(id), isActive: true } });
     if (!department) return res.status(404).json({ message: 'Department not found' });
     res.json(department);
   } catch (error) {
@@ -42,7 +42,7 @@ export const updateDepartment = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { name, code } = req.body;
     const department = await prisma.department.update({
-      where: { id },
+      where: { id: String(id) },
       data: { name, code }
     });
     res.json(department);
@@ -55,7 +55,7 @@ export const deleteDepartment = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     await prisma.department.update({ 
-      where: { id },
+      where: { id: String(id) },
       data: { isActive: false }
     });
     res.json({ message: 'Department soft-deleted successfully' });

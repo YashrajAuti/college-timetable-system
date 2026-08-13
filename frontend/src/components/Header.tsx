@@ -7,13 +7,27 @@ import { useAuth } from '@/context/AuthContext';
 export function Header() {
   const { user, logout } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [notifOpen, setNotifOpen] = useState(false);
 
-  // Close dropdown on outside click
+  const [notifications, setNotifications] = useState([
+    { id: '1', title: 'Workload Engine Validated', message: '100% Workload coverage (359/359 class hrs + 8 project hrs, 0 conflicts).', time: '10m ago', read: false, type: 'success' },
+    { id: '2', title: 'System Configuration', message: 'Working days set to Mon–Sat (6 slots/day).', time: '1h ago', read: false, type: 'info' },
+    { id: '3', title: 'Subject Audit Complete', message: '41 Canonical subjects linked to 78 assignments.', time: '2h ago', read: true, type: 'success' },
+  ]);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const notifRef = useRef<HTMLDivElement>(null);
+
+  const unreadCount = notifications.filter(n => !n.read).length;
+
+  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false);
+      }
+      if (notifRef.current && !notifRef.current.contains(event.target as Node)) {
+        setNotifOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -23,6 +37,10 @@ export function Header() {
   const handleLogoutClick = () => {
     setDropdownOpen(false);
     logout();
+  };
+
+  const markAllAsRead = () => {
+    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
   };
 
   return (
@@ -75,15 +93,65 @@ export function Header() {
             <span>AY 2026–27</span>
           </div>
 
-          {/* Notifications */}
-          <button 
-            type="button"
-            className="p-2 rounded-md hover:bg-[#F8F9FA] text-[#666666] hover:text-[#C8102E] transition-colors relative border border-transparent hover:border-[#E5E7EB]"
-            title="Notifications"
-          >
-            <Bell className="w-4 h-4" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#C8102E]" />
-          </button>
+          {/* Notifications Dropdown Container */}
+          <div className="relative" ref={notifRef}>
+            <button 
+              type="button"
+              onClick={() => setNotifOpen(!notifOpen)}
+              className="p-2 rounded-md hover:bg-[#F8F9FA] text-[#666666] hover:text-[#C8102E] transition-colors relative border border-transparent hover:border-[#E5E7EB] cursor-pointer"
+              title="System Notifications"
+              aria-label="Notifications"
+            >
+              <Bell className="w-4 h-4" />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 px-1.5 py-0.2 bg-[#C8102E] text-white text-[9px] font-black rounded-full shadow-2xs min-w-[16px] text-center">
+                  {unreadCount}
+                </span>
+              )}
+            </button>
+
+            {/* Notification Dropdown Window */}
+            {notifOpen && (
+              <div className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-xl shadow-2xl border border-slate-200 py-2 z-50 animate-fadeIn">
+                <div className="px-4 py-2.5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                  <div className="flex items-center gap-2">
+                    <Bell className="w-4 h-4 text-[#C8102E]" />
+                    <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider">System Notifications</h4>
+                  </div>
+                  {unreadCount > 0 && (
+                    <button
+                      onClick={markAllAsRead}
+                      className="text-[10px] font-bold text-[#C8102E] hover:underline cursor-pointer"
+                    >
+                      Mark all as read
+                    </button>
+                  )}
+                </div>
+
+                <div className="max-h-80 overflow-y-auto divide-y divide-slate-100">
+                  {notifications.length === 0 ? (
+                    <div className="p-6 text-center text-xs text-slate-400">
+                      No new notifications.
+                    </div>
+                  ) : (
+                    notifications.map(n => (
+                      <div key={n.id} className={`p-3 text-xs transition-colors ${!n.read ? "bg-red-50/40" : "bg-white hover:bg-slate-50"}`}>
+                        <div className="flex items-start justify-between gap-2">
+                          <p className="font-bold text-slate-900">{n.title}</p>
+                          <span className="text-[10px] text-slate-400 whitespace-nowrap">{n.time}</span>
+                        </div>
+                        <p className="text-[11px] text-slate-600 mt-1 leading-relaxed">{n.message}</p>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                <div className="px-4 py-2 border-t border-slate-100 bg-slate-50 text-center">
+                  <span className="text-[10px] font-semibold text-slate-400">MMIT Timetable System Event Log</span>
+                </div>
+              </div>
+            )}
+          </div>
 
           <div className="h-6 w-px bg-[#E5E7EB]" />
 

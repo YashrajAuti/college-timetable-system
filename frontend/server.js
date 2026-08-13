@@ -1,3 +1,5 @@
+process.env.TURBOPACK = '0';
+process.env.NEXT_PRIVATE_TURBOPACK = '0';
 const os = require('os');
 os.homedir = () => '/Users/yashrajshivajiauti/Documents/college-timetable-system/tmp';
 
@@ -5,7 +7,7 @@ const express = require('express');
 const next = require('next');
 
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev, dir: __dirname });
+const app = next({ dev, dir: __dirname, turbo: false });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {

@@ -14,7 +14,7 @@ export default function TimetablesPage() {
     e.preventDefault();
     if (!confirm("Are you sure you want to permanently delete this generated timetable?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/timetables/${id}`, { method: 'DELETE' });
+      const res = await fetch(`http://localhost:5050/api/timetables/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setTimetables(prev => prev.filter(t => t.id !== id));
       } else {
@@ -27,7 +27,7 @@ export default function TimetablesPage() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/timetables', {
+    fetch('http://localhost:5050/api/timetables', {
       headers: { 'Authorization': 'Bearer test-token' }
     })
       .then(res => res.json())
@@ -99,12 +99,12 @@ export default function TimetablesPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     {t.isValid ? (
-                      <span className="mmit-badge-emerald flex items-center gap-1 text-[11px]">
-                        <CheckCircle2 className="w-3 h-3" /> Validated
+                      <span className="mmit-badge-emerald flex items-center gap-1 text-[11px] font-bold">
+                        <CheckCircle2 className="w-3 h-3" /> COMPLETE (100%)
                       </span>
                     ) : (
-                      <span className="mmit-badge-amber flex items-center gap-1 text-[11px]">
-                        <AlertTriangle className="w-3 h-3" /> Check Conflicts
+                      <span className="mmit-badge-amber flex items-center gap-1 text-[11px] font-bold">
+                        <AlertTriangle className="w-3 h-3" /> INCOMPLETE WORKLOAD
                       </span>
                     )}
                     <button

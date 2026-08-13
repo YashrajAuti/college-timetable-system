@@ -32,8 +32,7 @@ const navSections = [
       { name: 'Teachers & Faculty', href: '/teachers', icon: Users },
       { name: 'Course Subjects', href: '/subjects', icon: BookOpen },
       { name: 'Rooms & Labs', href: '/rooms', icon: DoorOpen },
-      { name: 'Faculty Allocations', href: '/allocations', icon: ClipboardList },
-      { name: 'Workload Master', href: '/master/teacher-subjects', icon: FileSpreadsheet },
+      { name: 'Faculty Workload Master', href: '/allocations', icon: FileSpreadsheet },
     ]
   },
   {

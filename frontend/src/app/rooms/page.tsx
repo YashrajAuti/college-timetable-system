@@ -18,7 +18,7 @@ export default function RoomsPage() {
 
   const fetchRooms = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/rooms');
+      const res = await fetch('http://localhost:5050/api/rooms');
       const data = await res.json();
       setRooms(data);
     } catch (err) {
@@ -28,7 +28,7 @@ export default function RoomsPage() {
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/departments');
+      const res = await fetch('http://localhost:5050/api/departments');
       const data = await res.json();
       setDepartments(data);
       if (data.length > 0) setCurrentRoom(prev => ({ ...prev, departmentId: data[0].id }));
@@ -44,7 +44,7 @@ export default function RoomsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this room?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/rooms/${id}`, { method: 'DELETE' });
+      const res = await fetch(`http://localhost:5050/api/rooms/${id}`, { method: 'DELETE' });
       if (res.ok) fetchRooms();
     } catch (err) {
       console.error(err);
@@ -52,7 +52,7 @@ export default function RoomsPage() {
   };
 
   const handleSave = async (isEdit: boolean) => {
-    const url = isEdit ? `http://localhost:5000/api/rooms/${currentRoom.id}` : `http://localhost:5000/api/rooms`;
+    const url = isEdit ? `http://localhost:5050/api/rooms/${currentRoom.id}` : `http://localhost:5050/api/rooms`;
     const method = isEdit ? 'PUT' : 'POST';
     const payload = { ...currentRoom, capacity: parseInt(currentRoom.capacity as string) };
     try {

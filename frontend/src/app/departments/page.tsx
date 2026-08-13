@@ -26,7 +26,7 @@ export default function DepartmentsPage() {
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/departments');
+      const res = await fetch('http://localhost:5050/api/departments');
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -47,7 +47,7 @@ export default function DepartmentsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this department?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/departments/${id}`, { method: 'DELETE' });
+      const res = await fetch(`http://localhost:5050/api/departments/${id}`, { method: 'DELETE' });
       if (res.ok) {
         setDepartments(prev => prev.filter(d => d.id !== id));
       } else {
@@ -59,7 +59,7 @@ export default function DepartmentsPage() {
   };
 
   const handleSave = async (isEdit: boolean) => {
-    const url = isEdit ? `http://localhost:5000/api/departments/${currentDept.id}` : `http://localhost:5000/api/departments`;
+    const url = isEdit ? `http://localhost:5050/api/departments/${currentDept.id}` : `http://localhost:5050/api/departments`;
     const method = isEdit ? 'PUT' : 'POST';
     try {
       const res = await fetch(url, {

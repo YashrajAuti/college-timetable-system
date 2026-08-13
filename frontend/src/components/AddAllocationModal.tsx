@@ -1,294 +1,437 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { ClipboardList, CheckCircle2, AlertCircle, X, ShieldAlert } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ClipboardList, CheckCircle2, AlertCircle, X, ShieldAlert, Calculator } from 'lucide-react';
 
-export function AddAllocationModal({ isOpen, onClose, allocationToEdit }: { isOpen: boolean; onClose: () => void; allocationToEdit?: any }) {
+export function AddAllocationModal({
+  isOpen,
+  onClose,
+  allocationToEdit
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  allocationToEdit?: any;
+}) {
   const [teachers, setTeachers] = useState<any[]>([]);
-  const [masterMappings, setMasterMappings] = useState<any[]>([]);
-  
+  const [departments, setDepartments] = useState<any[]>([]);
+  const [subjects, setSubjects] = useState<any[]>([]);
+  const [divisions, setDivisions] = useState<any[]>([]);
+
   const [selectedTeacher, setSelectedTeacher] = useState('');
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedDiv, setSelectedDiv] = useState('');
+  const [selectedDept, setSelectedDept] = useState('');
+  const [academicYear, setAcademicYear] = useState('2024-25');
+  const [semester, setSemester] = useState('5');
+  const [className, setClassName] = useState('TE');
+  const [divisionName, setDivisionName] = useState('B');
+  const [batchName, setBatchName] = useState('All');
   const [selectedSubject, setSelectedSubject] = useState('');
-  const [selectedType, setSelectedType] = useState('LECTURE');
-  const [selectedBatch, setSelectedBatch] = useState('');
-  const [weeklyHours, setWeeklyHours] = useState(1);
+  const [courseCode, setCourseCode] = useState('');
+  const [courseName, setCourseName] = useState('');
+
+  const [theoryHours, setTheoryHours] = useState<number>(3);
+  const [practicalHours, setPracticalHours] = useState<number>(0);
+  const [tutorialHours, setTutorialHours] = useState<number>(0);
+  const [projectHours, setProjectHours] = useState<number>(0);
+
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     if (isOpen) {
-      fetch('http://localhost:5000/api/teachers').then(r => r.json()).then(setTeachers);
+      setErrorMsg('');
+      Promise.all([
+        fetch('http://localhost:5050/api/teachers').then(r => r.json()),
+        fetch('http://localhost:5050/api/departments').then(r => r.json()),
+        fetch('http://localhost:5050/api/subjects').then(r => r.json()),
+        fetch('http://localhost:5050/api/divisions').then(r => r.json())
+      ]).then(([tData, dData, sData, divData]) => {
+        if (Array.isArray(tData)) setTeachers(tData);
+        if (Array.isArray(dData)) setDepartments(dData);
+        if (Array.isArray(sData)) setSubjects(sData);
+        if (Array.isArray(divData)) setDivisions(divData);
+      }).catch(console.error);
 
       if (allocationToEdit) {
-          setSelectedTeacher(allocationToEdit.teacherId || '');
-          setSelectedDiv(allocationToEdit.divisionId || '');
-          setSelectedSubject(allocationToEdit.subjectId || '');
-          setSelectedType(allocationToEdit.type || 'LECTURE');
-          setSelectedBatch(allocationToEdit.batchId || '');
-          setWeeklyHours(allocationToEdit.weeklyHours || 1);
+        setSelectedTeacher(allocationToEdit.teacherId || '');
+        setSelectedDept(allocationToEdit.departmentId || allocationToEdit.teacher?.departmentId || '');
+        setAcademicYear(allocationToEdit.academicYear || '2024-25');
+        setSemester(String(allocationToEdit.semester || 5));
+        setClassName(allocationToEdit.className || 'TE');
+        setDivisionName(allocationToEdit.divisionName || 'B');
+        setBatchName(allocationToEdit.batchName || 'All');
+        setSelectedSubject(allocationToEdit.subjectId || '');
+        setCourseCode(allocationToEdit.courseCode || allocationToEdit.subject?.code || '');
+        setCourseName(allocationToEdit.courseName || allocationToEdit.subject?.name || '');
+        setTheoryHours(allocationToEdit.theoryHours || 0);
+        setPracticalHours(allocationToEdit.practicalHours || 0);
+        setTutorialHours(allocationToEdit.tutorialHours || 0);
+        setProjectHours(allocationToEdit.projectHours || 0);
       } else {
-          setSelectedTeacher('');
-          setSelectedYear('');
-          setSelectedDiv('');
-          setSelectedSubject('');
-          setSelectedType('LECTURE');
-          setSelectedBatch('');
-          setWeeklyHours(1);
-          setMasterMappings([]);
+        setSelectedTeacher('');
+        setSelectedDept('');
+        setAcademicYear('2024-25');
+        setSemester('5');
+        setClassName('TE');
+        setDivisionName('B');
+        setBatchName('All');
+        setSelectedSubject('');
+        setCourseCode('');
+        setCourseName('');
+        setTheoryHours(3);
+        setPracticalHours(0);
+        setTutorialHours(0);
+        setProjectHours(0);
       }
     }
   }, [isOpen, allocationToEdit]);
 
-  // Dependent fetch for master subjects allocated to teacher
-  useEffect(() => {
-    if (selectedTeacher) {
-       fetch(`http://localhost:5000/api/master-subjects?teacherId=${selectedTeacher}`)
-         .then(r => r.json())
-         .then(data => {
-            setMasterMappings(data);
-            if (allocationToEdit && data.length > 0) {
-               const map = data.find((d:any) => d.divisionId === allocationToEdit.divisionId);
-               if (map) setSelectedYear(map.division.yearId);
-            } else {
-               setSelectedYear('');
-               setSelectedDiv('');
-               setSelectedSubject('');
-            }
-         });
-    }
-  }, [selectedTeacher]);
-
-  const availableYears = Array.from(new Set(masterMappings.map(m => m.division.yearId))).map(id => {
-      const m = masterMappings.find(x => x.division.yearId === id);
-      return m.division.year;
-  });
-
-  const availableDivisions = Array.from(new Set(masterMappings.filter(m => m.division.yearId === selectedYear).map(m => m.divisionId))).map(id => {
-      return masterMappings.find(x => x.divisionId === id).division;
-  });
-
-  const availableSubjects = masterMappings.filter(m => m.divisionId === selectedDiv).map(m => m.subject);
-
   if (!isOpen) return null;
 
-  const currentDiv = availableDivisions.find((d: any) => d.id === selectedDiv);
-  const currentSubject = availableSubjects.find((s: any) => s.id === selectedSubject);
+  // Auto-calculate Total Hours
+  const totalHours = Math.max(0, Number(theoryHours) || 0) +
+                     Math.max(0, Number(practicalHours) || 0) +
+                     Math.max(0, Number(tutorialHours) || 0) +
+                     Math.max(0, Number(projectHours) || 0);
 
-  const handleSubmit = async () => {
-     try {
-        const payload = {
-            teacherId: selectedTeacher,
-            divisionId: selectedDiv,
-            subjectId: selectedSubject,
-            type: selectedType,
-            batchId: selectedBatch || null,
-            weeklyHours: Number(weeklyHours)
-        };
-        const method = allocationToEdit ? 'PUT' : 'POST';
-        const url = allocationToEdit 
-            ? `http://localhost:5000/api/allocations/${allocationToEdit.id}`
-            : `http://localhost:5000/api/allocations`;
-            
-        const res = await fetch(url, {
-            method,
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-        if (res.ok) {
-            onClose();
-        } else {
-            alert('Failed to save allocation');
-        }
-     } catch (e) {
-         console.error(e);
-     }
+  const handleSubjectChange = (subId: string) => {
+    setSelectedSubject(subId);
+    const sub = subjects.find(s => s.id === subId);
+    if (sub) {
+      setCourseCode(sub.code);
+      setCourseName(sub.name);
+      setTheoryHours(sub.lectureHours || 0);
+      setPracticalHours(sub.practicalHours || 0);
+      setTutorialHours(sub.tutorialHours || 0);
+      setSemester(String(sub.semester || 5));
+    }
+  };
+
+  const handleTeacherChange = (tId: string) => {
+    setSelectedTeacher(tId);
+    const t = teachers.find(x => x.id === tId);
+    if (t && t.departmentId) {
+      setSelectedDept(t.departmentId);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+
+    if (!selectedTeacher) {
+      setErrorMsg('Faculty member is required');
+      return;
+    }
+    if (!className || !divisionName) {
+      setErrorMsg('Class and Division are required');
+      return;
+    }
+    if (!courseCode && !selectedSubject) {
+      setErrorMsg('Course / Subject selection or code is required');
+      return;
+    }
+    if (!academicYear) {
+      setErrorMsg('Academic Year is required');
+      return;
+    }
+    if (theoryHours < 0 || practicalHours < 0 || tutorialHours < 0 || projectHours < 0) {
+      setErrorMsg('Teaching hours cannot be negative');
+      return;
+    }
+    if (totalHours <= 0) {
+      setErrorMsg('Total teaching load must be at least 1 hour per week');
+      return;
+    }
+
+    // Match division ID if available
+    let matchedDiv = divisions.find(d => d.name === divisionName);
+    if (!matchedDiv && divisions.length > 0) matchedDiv = divisions[0];
+
+    const payload = {
+      teacherId: selectedTeacher,
+      departmentId: selectedDept || (teachers.find(t => t.id === selectedTeacher)?.departmentId),
+      subjectId: selectedSubject || '',
+      divisionId: matchedDiv?.id || '',
+      className,
+      divisionName,
+      batchName,
+      courseCode,
+      courseName,
+      theoryHours: Number(theoryHours) || 0,
+      practicalHours: Number(practicalHours) || 0,
+      tutorialHours: Number(tutorialHours) || 0,
+      projectHours: Number(projectHours) || 0,
+      academicYear,
+      semester: Number(semester) || 5,
+      status: 'ACTIVE'
+    };
+
+    try {
+      const method = allocationToEdit ? 'PUT' : 'POST';
+      const url = allocationToEdit
+        ? `http://localhost:5050/api/allocations/${allocationToEdit.id}`
+        : `http://localhost:5050/api/allocations`;
+
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        onClose();
+      } else {
+        const data = await res.json();
+        setErrorMsg(data.message || 'Failed to save allocation');
+      }
+    } catch (err) {
+      console.error(err);
+      setErrorMsg('Network error connecting to backend server');
+    }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
-      <div className="bg-white rounded-xl shadow-2xl p-6 max-w-xl w-full border border-slate-200 my-8 max-h-[90vh] overflow-y-auto">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fadeIn">
+      <div className="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden flex flex-col max-h-[90vh]">
+        
+        {/* Modal Header */}
+        <div className="px-6 py-4 bg-[#C8102E] text-white flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-md bg-red-50 text-[#990000] border border-red-200/60">
-              <ClipboardList className="w-5 h-5" />
-            </div>
-            <div>
-              <h2 className="text-lg font-bold text-slate-900">
-                {allocationToEdit ? 'Edit Faculty Teaching Allocation' : 'Add Faculty Teaching Allocation'}
-              </h2>
-              <p className="text-xs text-slate-500">
-                Assign faculty member to specific division, course subject & session type
-              </p>
-            </div>
+            <ClipboardList className="w-5 h-5 text-white" />
+            <h2 className="text-lg font-bold">
+              {allocationToEdit ? 'Edit Faculty Allocation' : 'Add Faculty Allocation'}
+            </h2>
           </div>
-          <button onClick={onClose} className="p-1 rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-600">
+          <button onClick={onClose} className="p-1 rounded-md hover:bg-white/20 text-white cursor-pointer">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Step 1: Select Faculty */}
-        <div className="space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              1. Select Faculty Member
-            </label>
-            <select
-              value={selectedTeacher}
-              onChange={e => setSelectedTeacher(e.target.value)}
-              className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#990000]"
-            >
-              <option value="">-- Choose Faculty --</option>
-              {teachers.map(t => <option key={t.id} value={t.id}>{t.name} ({t.employeeId.replace('EMP-', '')})</option>)}
-            </select>
-          </div>
-
-          {/* Step 2: Dependent Year & Division */}
-          {selectedTeacher && (
-            <>
-              {masterMappings.length === 0 ? (
-                <div className="p-3.5 bg-amber-50 text-amber-800 rounded-md border border-amber-200 text-xs flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 shrink-0 text-amber-600 mt-0.5" />
-                  <div>
-                    <span className="font-bold">Notice:</span> No subjects are assigned to this faculty member in the master mapping database. Please configure <strong>Workload Master Data</strong> first.
-                  </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                      2. Select Year
-                    </label>
-                    <select
-                      value={selectedYear}
-                      onChange={e => { setSelectedYear(e.target.value); setSelectedDiv(''); setSelectedSubject(''); }}
-                      className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#990000]"
-                    >
-                      <option value="">-- Choose Year --</option>
-                      {availableYears.map((y: any) => <option key={y.id} value={y.id}>Year {y.year}</option>)}
-                    </select>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                      3. Select Division
-                    </label>
-                    <select
-                      value={selectedDiv}
-                      onChange={e => { setSelectedDiv(e.target.value); setSelectedSubject(''); setSelectedBatch(''); }}
-                      className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#990000] disabled:bg-slate-50"
-                      disabled={!selectedYear}
-                    >
-                      <option value="">-- Choose Division --</option>
-                      {availableDivisions.map((d: any) => <option key={d.id} value={d.id}>{d.name}</option>)}
-                    </select>
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-
-          {/* Step 3: Dependent Subject Dropdown */}
-          {selectedDiv && (
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                4. Select Filtered Subject
-              </label>
-              <select
-                value={selectedSubject}
-                onChange={e => setSelectedSubject(e.target.value)}
-                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#990000]"
-              >
-                <option value="">-- Choose Assigned Subject --</option>
-                {availableSubjects.map((s: any) => <option key={s.id} value={s.id}>{s.code} - {s.name}</option>)}
-              </select>
-              {availableSubjects.length === 0 && (
-                <p className="text-red-600 text-xs font-medium mt-1">
-                  No subjects are currently mapped to this faculty for Division {currentDiv?.name}.
-                </p>
-              )}
+        {/* Modal Form */}
+        <form onSubmit={handleSubmit} className="p-6 overflow-y-auto space-y-4 flex-1">
+          {errorMsg && (
+            <div className="p-3.5 bg-red-50 border border-red-200 text-red-700 rounded-lg text-xs font-semibold flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+              <span>{errorMsg}</span>
             </div>
           )}
 
-          {/* Step 4: Session Type & Weekly Hours */}
-          {selectedSubject && currentSubject && (
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  5. Session Type
-                </label>
-                <select
-                  value={selectedType}
-                  onChange={e => {
-                    const t = e.target.value;
-                    setSelectedType(t);
-                    if (t === 'LECTURE') setWeeklyHours(currentSubject.lectureHours || 1);
-                    else if (t === 'PRACTICAL') setWeeklyHours(currentSubject.practicalHours || 2);
-                    else if (t === 'TUTORIAL') setWeeklyHours(currentSubject.tutorialHours || 1);
-                  }}
-                  className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#990000]"
-                >
-                  {currentSubject.lectureHours > 0 && <option value="LECTURE">Theory (1 Hour Lecture)</option>}
-                  {currentSubject.practicalHours > 0 && <option value="PRACTICAL">Practical (2 Hour Lab Block)</option>}
-                  {currentSubject.tutorialHours > 0 && <option value="TUTORIAL">Tutorial (1 Hour Block)</option>}
-                  <option value="SEMINAR">Seminar</option>
-                </select>
-              </div>
+          {/* Section 1: Faculty & Department */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Faculty Member *</label>
+              <select
+                value={selectedTeacher}
+                onChange={e => handleTeacherChange(e.target.value)}
+                required
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E] font-medium"
+              >
+                <option value="">-- Select Faculty --</option>
+                {teachers.map(t => (
+                  <option key={t.id} value={t.id}>
+                    {t.name} ({t.shortCode || t.employeeId})
+                  </option>
+                ))}
+              </select>
+            </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                  Weekly Duration
-                </label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Department</label>
+              <select
+                value={selectedDept}
+                onChange={e => setSelectedDept(e.target.value)}
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              >
+                <option value="">-- Select Department --</option>
+                {departments.map(d => (
+                  <option key={d.id} value={d.id}>{d.name} ({d.code})</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Section 2: Academic Year, Semester, Class, Division, Batch */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Academic Year *</label>
+              <input
+                type="text"
+                value={academicYear}
+                onChange={e => setAcademicYear(e.target.value)}
+                required
+                placeholder="2024-25"
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Semester *</label>
+              <select
+                value={semester}
+                onChange={e => setSemester(e.target.value)}
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8].map(s => (
+                  <option key={s} value={s}>Semester {s}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Class *</label>
+              <select
+                value={className}
+                onChange={e => setClassName(e.target.value)}
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E] font-bold"
+              >
+                <option value="FE">FE (First Year)</option>
+                <option value="SE">SE (Second Year)</option>
+                <option value="TE">TE (Third Year)</option>
+                <option value="BE">BE (Final Year)</option>
+                <option value="ME">ME (Master)</option>
+              </select>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Division *</label>
+              <input
+                type="text"
+                value={divisionName}
+                onChange={e => setDivisionName(e.target.value)}
+                placeholder="A, B, A & B"
+                required
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Student Batch</label>
+              <input
+                type="text"
+                value={batchName}
+                onChange={e => setBatchName(e.target.value)}
+                placeholder="All, A1, B1,B2,B3,B4"
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Choose Course Subject *</label>
+              <select
+                value={selectedSubject}
+                onChange={e => handleSubjectChange(e.target.value)}
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              >
+                <option value="">-- Choose Subject --</option>
+                {subjects.map(s => (
+                  <option key={s.id} value={s.id}>
+                    {s.code} - {s.name} (Sem {s.semester})
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Course Code</label>
+              <input
+                type="text"
+                value={courseCode}
+                onChange={e => setCourseCode(e.target.value)}
+                placeholder="PCC301COM"
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white font-mono focus:outline-none focus:border-[#C8102E]"
+              />
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">Course Title</label>
+              <input
+                type="text"
+                value={courseName}
+                onChange={e => setCourseName(e.target.value)}
+                placeholder="Artificial Intelligence"
+                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E]"
+              />
+            </div>
+          </div>
+
+          {/* Section 3: Teaching Hours Breakdown & Auto-Calculated Total */}
+          <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                <Calculator className="w-4 h-4 text-[#C8102E]" /> Weekly Teaching Load Breakdown (Hours)
+              </span>
+              <div className="px-3 py-1 bg-[#FEF2F2] border border-red-200 rounded-lg text-xs font-extrabold text-[#C8102E]">
+                Total: {totalHours} hrs/week
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600">Theory Hours</label>
                 <input
                   type="number"
-                  value={weeklyHours}
-                  readOnly
-                  className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-slate-50 font-bold text-slate-700 cursor-not-allowed"
+                  min="0"
+                  value={theoryHours}
+                  onChange={e => setTheoryHours(Number(e.target.value))}
+                  className="w-full h-9 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E] font-bold"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600">Practical Hours</label>
+                <input
+                  type="number"
+                  min="0"
+                  value={practicalHours}
+                  onChange={e => setPracticalHours(Number(e.target.value))}
+                  className="w-full h-9 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E] font-bold"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600">Tutorial Hours</label>
+                <input
+                  type="number"
+                  min="0"
+                  value={tutorialHours}
+                  onChange={e => setTutorialHours(Number(e.target.value))}
+                  className="w-full h-9 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E] font-bold"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-[11px] font-bold text-slate-600">Project Hours</label>
+                <input
+                  type="number"
+                  min="0"
+                  value={projectHours}
+                  onChange={e => setProjectHours(Number(e.target.value))}
+                  className="w-full h-9 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#C8102E] font-bold"
                 />
               </div>
             </div>
-          )}
+          </div>
 
-          {/* Batch Selection for Practical */}
-          {selectedType === 'PRACTICAL' && currentDiv && (
-            <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-                6. Select Student Batch
-              </label>
-              <select
-                value={selectedBatch}
-                onChange={e => setSelectedBatch(e.target.value)}
-                className="w-full h-10 border border-slate-200 rounded-md px-3 text-sm bg-white focus:outline-none focus:border-[#990000]"
-              >
-                <option value="">-- Choose Batch --</option>
-                {currentDiv.batches?.map((b: any) => <option key={b.id} value={b.id}>Batch {b.name}</option>)}
-              </select>
-            </div>
-          )}
-
-          {/* Auto-Assigned Location Banner */}
-          {selectedSubject && (
-            <div className="p-3 bg-slate-50 border border-slate-200 rounded-md flex items-center justify-between text-xs">
-              <span className="font-semibold text-slate-700">Predefined Room Location:</span>
-              <span className="mmit-badge-emerald flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5" /> AUTO-ASSIGNED
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* Footer Action Buttons */}
-        <div className="pt-6 border-t border-slate-100 flex items-center justify-end gap-2 mt-6">
-          <Button variant="outline" onClick={onClose}>Cancel</Button>
-          <button
-            onClick={handleSubmit}
-            disabled={!selectedTeacher || !selectedDiv || !selectedSubject || (selectedType === 'PRACTICAL' && !selectedBatch)}
-            className="mmit-btn-primary"
-          >
-            Save Allocation
-          </button>
-        </div>
+          {/* Buttons */}
+          <div className="pt-2 flex items-center justify-end gap-3 shrink-0">
+            <button
+              type="button"
+              onClick={onClose}
+              className="mmit-btn-secondary cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="mmit-btn-primary cursor-pointer"
+            >
+              <CheckCircle2 className="w-4 h-4" /> Save Teaching Allocation
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
