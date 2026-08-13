@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from 'react';
+import { apiUrl } from '@/lib/api';
 import {
   Plus,
   Pencil,
@@ -66,10 +67,10 @@ export default function AllocationsPage() {
     setLoading(true);
     try {
       const deptParam = selectedDept !== 'ALL' ? `?departmentId=${selectedDept}` : '';
-      const summaryUrl = `http://localhost:5050/api/allocations/summary${deptParam}`;
-      const graphUrl = `http://localhost:5050/api/allocations/graphs${deptParam}`;
-      const allocUrl = `http://localhost:5050/api/allocations${deptParam}`;
-      const deptUrl = `http://localhost:5050/api/departments`;
+      const summaryUrl = apiUrl(`/api/allocations/summary${deptParam}`);
+      const graphUrl = apiUrl(`/api/allocations/graphs${deptParam}`);
+      const allocUrl = apiUrl(`/api/allocations${deptParam}`);
+      const deptUrl = apiUrl('/api/departments');
 
       const [sumRes, graphRes, allocRes, deptRes] = await Promise.all([
         fetch(summaryUrl),
@@ -179,7 +180,7 @@ export default function AllocationsPage() {
 
     if (!confirm(confirmMessage)) return;
     try {
-      await fetch(`http://localhost:5050/api/allocations/${id}`, { method: 'DELETE' });
+      await fetch(apiUrl(`/api/allocations/${id}`), { method: 'DELETE' });
       fetchData();
       if (isDetailModalOpen) {
         setIsDetailModalOpen(false);
@@ -192,7 +193,7 @@ export default function AllocationsPage() {
   const handleDeleteFaculty = async (teacherId: string, teacherName: string) => {
     if (!confirm(`Delete Entire Faculty Member?\n\nFaculty: ${teacherName}\n\nWARNING: This will permanently remove all workload assignments for this faculty member.\nAre you sure you want to proceed?`)) return;
     try {
-      await fetch(`http://localhost:5050/api/teachers/${teacherId}`, { method: 'DELETE' });
+      await fetch(apiUrl(`/api/teachers/${teacherId}`), { method: 'DELETE' });
       fetchData();
     } catch (err) {
       console.error(err);

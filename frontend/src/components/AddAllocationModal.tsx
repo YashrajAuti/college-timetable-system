@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ClipboardList, CheckCircle2, AlertCircle, X, ShieldAlert, Calculator } from 'lucide-react';
+import { apiUrl } from '@/lib/api';
 
 export function AddAllocationModal({
   isOpen,
@@ -39,10 +40,10 @@ export function AddAllocationModal({
     if (isOpen) {
       setErrorMsg('');
       Promise.all([
-        fetch('http://localhost:5050/api/teachers').then(r => r.json()),
-        fetch('http://localhost:5050/api/departments').then(r => r.json()),
-        fetch('http://localhost:5050/api/subjects').then(r => r.json()),
-        fetch('http://localhost:5050/api/divisions').then(r => r.json())
+        fetch(apiUrl('/api/teachers')).then(r => r.json()),
+        fetch(apiUrl('/api/departments')).then(r => r.json()),
+        fetch(apiUrl('/api/subjects')).then(r => r.json()),
+        fetch(apiUrl('/api/divisions')).then(r => r.json())
       ]).then(([tData, dData, sData, divData]) => {
         if (Array.isArray(tData)) setTeachers(tData);
         if (Array.isArray(dData)) setDepartments(dData);
@@ -168,8 +169,8 @@ export function AddAllocationModal({
     try {
       const method = allocationToEdit ? 'PUT' : 'POST';
       const url = allocationToEdit
-        ? `http://localhost:5050/api/allocations/${allocationToEdit.id}`
-        : `http://localhost:5050/api/allocations`;
+        ? apiUrl(`/api/allocations/${allocationToEdit.id}`)
+        : apiUrl('/api/allocations');
 
       const res = await fetch(url, {
         method,

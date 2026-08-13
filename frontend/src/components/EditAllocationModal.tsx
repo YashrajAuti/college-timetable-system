@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { X, Pencil, Loader2, AlertCircle } from 'lucide-react';
+import { apiUrl } from '@/lib/api';
 
 interface EditAllocationModalProps {
   isOpen: boolean;
@@ -57,7 +58,7 @@ export function EditAllocationModal({ isOpen, allocation, onClose, onSuccess }: 
 
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:5050/api/allocations/${allocation.id}`, {
+      const res = await fetch(apiUrl(`/api/allocations/${allocation.id}`), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

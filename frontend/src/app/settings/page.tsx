@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { apiUrl } from "@/lib/api";
 import {
   Settings, Save, RotateCcw, ChevronRight,
   Clock, Building2, Calendar, Cpu, CheckCircle2,
@@ -8,8 +9,6 @@ import {
   BookOpen, DoorOpen, CalendarDays, Layers
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const API = "http://localhost:5050";
 
 interface TimeSlotConfig {
   index: number;
@@ -83,8 +82,8 @@ export default function SettingsPage() {
   const fetchData = useCallback(async () => {
     try {
       const [settingsRes, statsRes] = await Promise.all([
-        fetch(`${API}/api/settings`),
-        fetch(`${API}/api/settings/stats`),
+        fetch(apiUrl('/api/settings')),
+        fetch(apiUrl('/api/settings/stats')),
       ]);
       if (settingsRes.ok) {
         const s = await settingsRes.json();
@@ -108,7 +107,7 @@ export default function SettingsPage() {
     if (!settings) return;
     setSaving(true);
     try {
-      const res = await fetch(`${API}/api/settings`, {
+      const res = await fetch(apiUrl('/api/settings'), {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(settings),
@@ -127,7 +126,7 @@ export default function SettingsPage() {
   const handleReset = async () => {
     if (!confirm("Reset all settings to factory defaults? This cannot be undone.")) return;
     try {
-      await fetch(`${API}/api/settings/reset`, { method: "POST" });
+      await fetch(apiUrl('/api/settings/reset'), { method: "POST" });
       await fetchData();
     } catch {
       setError("Failed to reset settings.");

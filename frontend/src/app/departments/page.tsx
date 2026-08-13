@@ -5,6 +5,7 @@ import { Plus, Pencil, Trash2, Loader2, Search, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { apiUrl } from "@/lib/api";
 
 const DEFAULT_DEPARTMENTS = [
   { id: '197ac8fb-0c31-4d58-b25d-783aceda5631', name: 'Computer Engineering', code: 'CE', createdAt: new Date().toISOString() },
@@ -26,7 +27,7 @@ export default function DepartmentsPage() {
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch('http://localhost:5050/api/departments');
+      const res = await fetch(apiUrl('/api/departments'));
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length > 0) {
@@ -47,7 +48,7 @@ export default function DepartmentsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this department?")) return;
     try {
-      const res = await fetch(`http://localhost:5050/api/departments/${id}`, { method: 'DELETE' });
+      const res = await fetch(apiUrl(`/api/departments/${id}`), { method: 'DELETE' });
       if (res.ok) {
         setDepartments(prev => prev.filter(d => d.id !== id));
       } else {
@@ -59,7 +60,7 @@ export default function DepartmentsPage() {
   };
 
   const handleSave = async (isEdit: boolean) => {
-    const url = isEdit ? `http://localhost:5050/api/departments/${currentDept.id}` : `http://localhost:5050/api/departments`;
+    const url = isEdit ? apiUrl(`/api/departments/${currentDept.id}`) : apiUrl('/api/departments');
     const method = isEdit ? 'PUT' : 'POST';
     try {
       const res = await fetch(url, {

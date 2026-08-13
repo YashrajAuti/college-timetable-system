@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { apiUrl } from "@/lib/api";
 import {
   X, Loader2, CheckCircle2, AlertTriangle, XCircle,
   BarChart2, Cpu, ChevronRight, Info, BookOpen, Users,
   DoorOpen, CalendarDays, Layers, Clock
 } from "lucide-react";
-
-const API = "http://localhost:5050";
 
 interface GenerateModalProps {
   isOpen: boolean;
@@ -71,7 +70,7 @@ export function GenerateModal({ isOpen, onClose, onGenerated }: GenerateModalPro
   const fetchPreview = async () => {
     setLoadingPreview(true);
     try {
-      const res = await fetch(`${API}/api/timetables/preview?departmentId=${departmentId}`);
+      const res = await fetch(apiUrl(`/api/timetables/preview?departmentId=${departmentId}`));
       if (res.ok) setPreview(await res.json());
     } catch { }
     setLoadingPreview(false);
@@ -88,7 +87,7 @@ export function GenerateModal({ isOpen, onClose, onGenerated }: GenerateModalPro
     }, 1200);
 
     try {
-      const res = await fetch(`${API}/api/timetables/generate`, {
+      const res = await fetch(apiUrl("/api/timetables/generate"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ mode, departmentId: departmentId === "ALL" ? undefined : departmentId }),

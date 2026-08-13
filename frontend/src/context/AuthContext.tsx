@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import { apiUrl } from '@/lib/api';
 
 interface User {
   id: string;
@@ -59,7 +60,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     try {
       // 1. Try server-side Express API verification
-      const res = await fetch('http://localhost:5050/api/auth/login', {
+      const res = await fetch(apiUrl('/api/auth/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ adminId: cleanId, password: cleanPassword })

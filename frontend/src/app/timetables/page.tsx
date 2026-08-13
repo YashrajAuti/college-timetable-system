@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CalendarDays, Plus, ExternalLink, Trash2, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
 import { GenerateModal } from '@/components/GenerateModal';
+import { apiUrl } from '@/lib/api';
 
 export default function TimetablesPage() {
   const [timetables, setTimetables] = useState<any[]>([]);
@@ -14,7 +15,7 @@ export default function TimetablesPage() {
     e.preventDefault();
     if (!confirm("Are you sure you want to permanently delete this generated timetable?")) return;
     try {
-      const res = await fetch(`http://localhost:5050/api/timetables/${id}`, { method: 'DELETE' });
+      const res = await fetch(apiUrl(`/api/timetables/${id}`), { method: 'DELETE' });
       if (res.ok) {
         setTimetables(prev => prev.filter(t => t.id !== id));
       } else {
@@ -27,7 +28,7 @@ export default function TimetablesPage() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:5050/api/timetables', {
+    fetch(apiUrl('/api/timetables'), {
       headers: { 'Authorization': 'Bearer test-token' }
     })
       .then(res => res.json())

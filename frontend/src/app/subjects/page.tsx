@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useMemo } from "react";
+import { apiUrl } from "@/lib/api";
 import {
   Plus, Pencil, Trash2, BookOpen, Search, Loader2,
   AlertTriangle, CheckCircle2, Info, FlaskConical,
@@ -11,8 +12,6 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-
-const API = "http://localhost:5050";
 
 const SEM_LABELS: Record<number, string> = {
   1: "Sem 1 (FE)",
@@ -88,7 +87,7 @@ export default function SubjectsPage() {
       if (filterType !== "ALL") params.set("type", filterType);
       if (searchQuery.trim()) params.set("search", searchQuery.trim());
 
-      const res = await fetch(`${API}/api/subjects?${params}`);
+      const res = await fetch(apiUrl(`/api/subjects?${params}`));
       if (res.ok) setSubjects(await res.json());
     } catch (err) {
       console.warn("Error fetching subjects:", err);
@@ -97,7 +96,7 @@ export default function SubjectsPage() {
 
   const fetchDepartments = async () => {
     try {
-      const res = await fetch(`${API}/api/departments`);
+      const res = await fetch(apiUrl('/api/departments'));
       if (res.ok) setDepartments(await res.json());
     } catch {}
   };
@@ -105,7 +104,7 @@ export default function SubjectsPage() {
   const fetchAudit = async () => {
     setAuditLoading(true);
     try {
-      const res = await fetch(`${API}/api/subjects/audit`);
+      const res = await fetch(apiUrl('/api/subjects/audit'));
       if (res.ok) setAudit(await res.json());
     } catch {}
     finally { setAuditLoading(false); }
@@ -143,14 +142,14 @@ export default function SubjectsPage() {
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Delete subject "${name}"? This will soft-delete (not permanently remove) the record.`)) return;
-    await fetch(`${API}/api/subjects/${id}`, { method: "DELETE" });
+    await fetch(apiUrl(`/api/subjects/${id}`), { method: "DELETE" });
     await fetchSubjects();
     await fetchAudit();
   };
 
   const handleSave = async (isEdit: boolean) => {
     setSaveError("");
-    const url = isEdit ? `${API}/api/subjects/${currentSubject.id}` : `${API}/api/subjects`;
+    const url = isEdit ? apiUrl(`/api/subjects/${currentSubject.id}`) : apiUrl('/api/subjects');
     const method = isEdit ? "PUT" : "POST";
     const payload = {
       ...currentSubject,

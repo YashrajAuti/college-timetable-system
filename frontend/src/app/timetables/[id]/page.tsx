@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { User, Users, Loader2, Printer, CheckCircle2, ShieldCheck, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { apiUrl } from '@/lib/api';
 
 import { exportTimetableToPDF } from '@/utils/generateTimetablePDF';
 
@@ -38,10 +39,10 @@ export default function TimetableViewer() {
 
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:5050/api/teachers').then(res => res.json()),
-      fetch('http://localhost:5050/api/divisions').then(res => res.json()),
-      fetch(`http://localhost:5050/api/timetables/${timetableId}/entries`).then(res => res.json()),
-      fetch(`http://localhost:5050/api/timetables/${timetableId}/completeness`).then(res => res.json())
+      fetch(apiUrl('/api/teachers')).then(res => res.json()),
+      fetch(apiUrl('/api/divisions')).then(res => res.json()),
+      fetch(apiUrl(`/api/timetables/${timetableId}/entries`)).then(res => res.json()),
+      fetch(apiUrl(`/api/timetables/${timetableId}/completeness`)).then(res => res.json())
     ]).then(([allTeachers, allDivisions, timetableEntries, compReport]) => {
       const validTeacherIds = new Set(timetableEntries.map((e: any) => e.teacherId));
       const validDivisionIds = new Set(timetableEntries.map((e: any) => e.divisionId));
@@ -65,8 +66,8 @@ export default function TimetableViewer() {
     }
     setLoading(true);
     const endpoint = viewType === 'TEACHER'
-      ? `http://localhost:5050/api/timetables/${timetableId}/teacher/${selectedId}`
-      : `http://localhost:5050/api/timetables/${timetableId}/division/${selectedId}`;
+      ? apiUrl(`/api/timetables/${timetableId}/teacher/${selectedId}`)
+      : apiUrl(`/api/timetables/${timetableId}/division/${selectedId}`);
 
     fetch(endpoint)
       .then(res => res.json())

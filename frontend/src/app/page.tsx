@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { apiUrl } from "@/lib/api";
 import {
   Users,
   Building2,
@@ -34,7 +35,7 @@ export default function Dashboard() {
 
   // Fetch departments list dynamically from DB
   useEffect(() => {
-    fetch('http://localhost:5050/api/departments')
+    fetch(apiUrl('/api/departments'))
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setDepartments(data);
@@ -46,8 +47,8 @@ export default function Dashboard() {
   useEffect(() => {
     setLoading(true);
     const url = selectedDeptId !== "ALL"
-      ? `http://localhost:5050/api/stats?departmentId=${selectedDeptId}`
-      : 'http://localhost:5050/api/stats';
+      ? apiUrl(`/api/stats?departmentId=${selectedDeptId}`)
+      : apiUrl('/api/stats');
 
     fetch(url)
       .then(res => res.json())
