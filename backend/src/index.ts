@@ -24,7 +24,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-const PORT = process.env.PORT || 5050;
+const PORT = Number(process.env.PORT) || 5050;
 
 app.get('/health', async (req, res) => {
   try {
