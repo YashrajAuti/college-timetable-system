@@ -350,14 +350,16 @@ async function main() {
     });
   }
 
-  // Standard Time Slots
+  // Standard Time Slots (8 slots: 6 teaching + 2 breaks)
   const slotsData = [
-    { index: 1, startTime: '08:30', endTime: '09:30' },
-    { index: 2, startTime: '09:30', endTime: '10:30' },
-    { index: 4, startTime: '10:45', endTime: '11:45' },
-    { index: 5, startTime: '11:45', endTime: '12:45' },
-    { index: 7, startTime: '13:30', endTime: '14:30' },
-    { index: 8, startTime: '14:30', endTime: '15:30' },
+    { index: 1, startTime: '08:30', endTime: '09:30',  isBreak: false },
+    { index: 2, startTime: '09:30', endTime: '10:30',  isBreak: false },
+    { index: 3, startTime: '10:30', endTime: '10:45',  isBreak: true,  breakName: 'Short Recess' },
+    { index: 4, startTime: '10:45', endTime: '11:45',  isBreak: false },
+    { index: 5, startTime: '11:45', endTime: '12:45',  isBreak: false },
+    { index: 6, startTime: '12:45', endTime: '13:30',  isBreak: true,  breakName: 'Lunch Break' },
+    { index: 7, startTime: '13:30', endTime: '14:30',  isBreak: false },
+    { index: 8, startTime: '14:30', endTime: '15:30',  isBreak: false },
   ];
   for (const s of slotsData) await prisma.timeSlot.create({ data: s });
 

@@ -222,7 +222,7 @@ def solve_with_ortools(input_data):
             model.AddAtMostOne(vars_list)
 
     solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = 25.0
+    solver.parameters.max_time_in_seconds = 15.0
     import os
     cpu_count = os.cpu_count() or 1
     solver.parameters.num_search_workers = min(2, cpu_count)

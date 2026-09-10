@@ -69,12 +69,19 @@ export class TimetableEngine {
       sessions,
     };
 
-    // ─── 3. Generate 3 Distinct Evaluation Variants ────────────────────────
-    const variantConfigs = [
-      { variantNumber: 1, name: `MMIT Timetable — AY 2026-27 (Variant 1: Balanced)`, seed: 1 },
-      { variantNumber: 2, name: `MMIT Timetable — AY 2026-27 (Variant 2: Alternative Track A)`, seed: 42 },
-      { variantNumber: 3, name: `MMIT Timetable — AY 2026-27 (Variant 3: Alternative Track B)`, seed: 101 },
-    ];
+    // ─── 3. Generate Timetable Variants ───────────────────────────────────────
+    // On production (Render free tier: 0.1 vCPU, 90s HTTP timeout), generate 1 variant only.
+    // On local dev, generate 3 distinct variants for evaluation.
+    const isProduction = process.env.NODE_ENV === 'production';
+    const variantConfigs = isProduction
+      ? [
+          { variantNumber: 1, name: `MMIT Timetable — AY 2026-27 (Variant 1: Balanced)`, seed: 1 },
+        ]
+      : [
+          { variantNumber: 1, name: `MMIT Timetable — AY 2026-27 (Variant 1: Balanced)`, seed: 1 },
+          { variantNumber: 2, name: `MMIT Timetable — AY 2026-27 (Variant 2: Alternative Track A)`, seed: 42 },
+          { variantNumber: 3, name: `MMIT Timetable — AY 2026-27 (Variant 3: Alternative Track B)`, seed: 101 },
+        ];
 
     const timeSlotMap = new Map(timeSlots.map(s => [s.index, s]));
     const buildEntries = (placements: any[]) => {
@@ -146,8 +153,8 @@ export class TimetableEngine {
     const solveStartTime = Date.now();
 
     for (const vConfig of variantConfigs) {
-      // If we already have at least 1 valid timetable variant and total time > 20s, return early to prevent cloud HTTP timeout
-      if (variantResults.length > 0 && (Date.now() - solveStartTime) > 20000) {
+      // If we already have at least 1 valid timetable variant and total time > 12s, return early to prevent cloud HTTP timeout
+      if (variantResults.length > 0 && (Date.now() - solveStartTime) > 12000) {
         console.log(`[Engine] Returning early after ${variantResults.length} variant(s) (${Date.now() - solveStartTime}ms) to prevent cloud gateway timeout.`);
         break;
       }
