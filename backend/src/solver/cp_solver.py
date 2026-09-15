@@ -356,10 +356,11 @@ def solve_with_pure_cp(input_data):
             if s.get('batchId') and s.get('divisionId'):
                 div_batches[s['divisionId']].add(s['batchId'])
 
-        # Prioritize standard practical blocks (0,1) morning and (4,5) afternoon
-        standard_pairs = [(0, 1), (4, 5)]
-        other_pairs = [p for p in valid_practical_pairs if p not in standard_pairs]
-        ordered_pairs = standard_pairs + other_pairs
+        # Order practical pairs: prefer morning pairs first (lower slot index first),
+        # then afternoon. MUST use only pairs from valid_practical_pairs (1-indexed, break-aware).
+        # BUG FIX: old code used (0,1) which is a non-existent slot — all practicals placed
+        # at slot 0 were silently dropped by timetableEngine (timeSlotMap.get(0) = undefined).
+        ordered_pairs = sorted(valid_practical_pairs, key=lambda p: p[0])
 
         practical_slot_order = [
             (day, p1, p2)
