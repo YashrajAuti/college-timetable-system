@@ -222,7 +222,7 @@ def solve_with_ortools(input_data):
             model.AddAtMostOne(vars_list)
 
     solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = 15.0
+    solver.parameters.max_time_in_seconds = 8.0   # Fast fail; greedy fallback handles remainder
     import os
     cpu_count = os.cpu_count() or 1
     solver.parameters.num_search_workers = min(2, cpu_count)
@@ -731,10 +731,30 @@ if __name__ == '__main__':
         raw_input = sys.stdin.read()
         input_data = json.loads(raw_input) if raw_input.strip() else {}
 
+        result = None
+
+        # ── Primary: Try CP-SAT (Google OR-Tools) ───────────────────────────
         try:
             from ortools.sat.python import cp_model  # noqa: F401
             result = solve_with_ortools(input_data)
+
+            # ── If CP-SAT timed out with no solution, fall through to greedy ─
+            if result.get('status') == 'INFEASIBLE' or (
+                result.get('status') == 'FEASIBLE' and len(result.get('placements', [])) == 0
+            ):
+                sys.stderr.write(
+                    f"[Solver] CP-SAT returned {result.get('status')} "
+                    f"(solveTime={result.get('solveTimeMs')}ms). "
+                    f"Falling back to Pure Python Greedy Solver.\n"
+                )
+                result = None  # trigger fallback
+
         except ImportError:
+            sys.stderr.write("[Solver] ortools not available. Using Pure Python Greedy Solver.\n")
+            result = None
+
+        # ── Fallback: Pure Python Greedy Solver ─────────────────────────────
+        if result is None:
             result = solve_with_pure_cp(input_data)
 
         print(json.dumps(result))
@@ -747,3 +767,4 @@ if __name__ == '__main__':
             "traceback":  traceback.format_exc(),
             "placements": [],
         }))
+
