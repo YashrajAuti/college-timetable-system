@@ -51,10 +51,24 @@ export async function seedCanonical168() {
       continue;
     }
 
-    const subjectId = subjectMap.get(alloc.subjectCode);
+    let subjectId = subjectMap.get(alloc.subjectCode);
     if (!subjectId) {
-      console.warn(`[Seed-168] Warning: Subject ${alloc.subjectCode} not found, skipping.`);
-      continue;
+      const isLab = alloc.practicalHours > 0 || alloc.type === 'PRACTICAL';
+      const createdSubject = await prisma.subject.create({
+        data: {
+          code: alloc.subjectCode,
+          name: alloc.subjectName || alloc.subjectCode,
+          departmentId: compDept.id,
+          semester: alloc.semester || (alloc.yearNumber === 2 ? 3 : alloc.yearNumber === 3 ? 5 : 7),
+          credits: alloc.theoryHours > 0 ? 3 : 2,
+          lectureHours: alloc.theoryHours,
+          practicalHours: alloc.practicalHours,
+          tutorialHours: alloc.tutorialHours,
+          labRequired: isLab
+        }
+      });
+      subjectId = createdSubject.id;
+      subjectMap.set(alloc.subjectCode, subjectId);
     }
 
     const divKey = `${alloc.yearNumber}-${alloc.divisionName}`;
