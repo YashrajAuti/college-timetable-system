@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { execSync } from 'child_process';
+import { TimetableEngine } from './services/timetableEngine';
 
 const prisma = new PrismaClient();
 
@@ -113,6 +114,32 @@ async function checkAndSeed() {
         }
       });
     }
+
+    // ─── Auto-generate timetable if none exist ──────────────────────────────
+    const timetableCount = await prisma.timetable.count();
+    if (timetableCount === 0) {
+      console.log('[Startup] No timetables found. Auto-generating one for the QR viewer...');
+      try {
+        const targetDivs = await prisma.division.findMany({
+          where: { year: { year: { in: [2, 3, 4] } }, name: { in: ['A', 'B'] } }
+        });
+        const targetDivisionIds = targetDivs.map((d: any) => d.id);
+
+        const engine = new TimetableEngine();
+        const result = await engine.generate({ days: [1, 2, 3, 4, 5], divisionIds: targetDivisionIds });
+
+        if (result.isValid && result.timetableId) {
+          console.log(`[Startup] ✅ Auto-generated timetable successfully! ID: ${result.timetableId}`);
+        } else {
+          console.warn(`[Startup] ⚠️ Auto-generation attempted but returned: ${result.status} — ${result.message}`);
+        }
+      } catch (genError) {
+        console.warn('[Startup] ⚠️ Timetable auto-generation failed (non-fatal):', genError);
+      }
+    } else {
+      console.log(`[Startup] ${timetableCount} timetable(s) already exist. Skipping auto-generation.`);
+    }
+
   } catch (error) {
     console.error('[Startup] Warning: Check-and-seed encountered an issue:', error);
     // Don't crash the server start process
