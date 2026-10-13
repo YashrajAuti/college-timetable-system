@@ -127,17 +127,19 @@ export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
 
+  const isPublicRoute = pathname === '/login' || pathname?.startsWith('/view');
+
   useEffect(() => {
     if (!loading) {
-      if (!isAuthenticated && pathname !== '/login') {
+      if (!isAuthenticated && !isPublicRoute) {
         router.replace('/login');
       } else if (isAuthenticated && pathname === '/login') {
         router.replace('/');
       }
     }
-  }, [isAuthenticated, loading, pathname, router]);
+  }, [isAuthenticated, loading, pathname, router, isPublicRoute]);
 
-  if (loading) {
+  if (loading && !isPublicRoute) {
     return (
       <div className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-4">
         <div className="w-12 h-12 rounded-full border-3 border-[#C8102E] border-t-transparent animate-spin mb-4" />
@@ -146,7 +148,7 @@ export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (!isAuthenticated && pathname !== '/login') {
+  if (!isAuthenticated && !isPublicRoute) {
     return null; // Prevents flashing protected content before redirect
   }
 

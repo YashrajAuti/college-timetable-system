@@ -10,13 +10,13 @@ import { ThemeProvider } from "@/context/ThemeContext";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isLoginPage = pathname === "/login";
+  const isPublicRoute = pathname === "/login" || pathname?.startsWith("/view");
 
   return (
     <ThemeProvider>
       <AuthProvider>
         <AuthGuard>
-          {isLoginPage ? (
+          {isPublicRoute ? (
             <div className="min-h-screen w-full font-sans antialiased">
               {children}
             </div>
