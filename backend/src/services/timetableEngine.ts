@@ -276,7 +276,12 @@ export class TimetableEngine {
   private async runPythonSolver(inputData: any): Promise<any> {
     return new Promise((resolve) => {
       const isWin = process.platform === 'win32';
-      const pythonExec = isWin ? 'python' : 'python3';
+      const venvPython = isWin
+        ? path.join(process.cwd(), 'venv', 'Scripts', 'python.exe')
+        : path.join(process.cwd(), 'venv', 'bin', 'python');
+      const pythonExec = require('fs').existsSync(venvPython)
+        ? venvPython
+        : (isWin ? 'python' : 'python3');
       const scriptPath = path.join(process.cwd(), 'src', 'solver', 'cp_solver.py');
 
       require('fs').writeFileSync(path.join(process.cwd(), 'api_input_dump.json'), JSON.stringify(inputData, null, 2));

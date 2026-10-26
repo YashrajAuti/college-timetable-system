@@ -304,21 +304,21 @@ export default function SettingsPage() {
 
       <div className="flex flex-col md:flex-row gap-6">
         {/* Sidebar */}
-        <div className="w-full md:w-56 shrink-0">
+        <div className="w-full md:w-64 shrink-0">
           <nav className="space-y-1 bg-white rounded-xl border border-slate-200 p-2 shadow-2xs">
             {SECTIONS.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 onClick={() => setActiveSection(id)}
-                className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-xs font-semibold text-left transition-all cursor-pointer ${
                   activeSection === id
                     ? "bg-[#FEF2F2] text-[#C8102E] border-l-4 border-[#C8102E] pl-2.5"
                     : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                 }`}
               >
                 <Icon className="w-4 h-4 shrink-0" />
-                <span>{label}</span>
-                {activeSection === id && <ChevronRight className="w-3 h-3 ml-auto" />}
+                <span className="flex-1 text-left leading-normal">{label}</span>
+                {activeSection === id && <ChevronRight className="w-3.5 h-3.5 ml-auto shrink-0" />}
               </button>
             ))}
           </nav>

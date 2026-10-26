@@ -67,9 +67,13 @@ pnpm-debug.log*
 
 # OS & IDE
 .DS_Store
+._*
+**/._*
 Thumbs.db
 .vscode/
 .idea/
 tmp/
 *.tmp
 *.tsbuildinfo
+fly.toml
+
