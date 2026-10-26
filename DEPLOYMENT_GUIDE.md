@@ -42,7 +42,7 @@ If you haven't already pushed this project to your GitHub account:
    git add .
    git commit -m "feat: complete timetable system ready for Render & Vercel deployment"
    git branch -M main
-   git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/college-timetable-system.git
+   git remote add origin https://github.com/YashrajAuti/college-timetable-system.git
    git push -u origin main
    ```
 
