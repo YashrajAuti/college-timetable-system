@@ -1,21 +1,31 @@
 <div align="center">
 
-# 🎓 College Timetable Management System
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=900&color=00D9FF&center=true&vCenter=true&width=850&lines=College+Timetable+Management+System;Smart+Academic+Scheduling;Faculty+%7C+Subjects+%7C+Classrooms;Automated+Timetable+Generation" alt="Animated Project Header" />
 
-### Automated Academic Timetable Management for Colleges
+<h3>🎓 College Timetable Management System</h3>
+
+<p>
+  A web-based solution for simplifying academic scheduling,
+  managing faculty workloads, and organizing college timetables.
+</p>
+
+<br/>
 
 <a href="https://mmit-timetable.vercel.app/login">
-  <img src="https://img.shields.io/badge/🚀_LIVE_DEMO-Visit_Website-00C7B7?style=for-the-badge" alt="Live Demo"/>
+  <img src="https://img.shields.io/badge/🚀_LIVE_DEMO-00C9A7?style=for-the-badge" alt="Live Demo"/>
 </a>
 <a href="https://github.com/YashrajAuti/college-timetable-system">
   <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository"/>
 </a>
+<a href="https://github.com/YashrajAuti">
+  <img src="https://img.shields.io/badge/Developer-Yashraj_Auti-0077B5?style=for-the-badge&logo=github" alt="Developer"/>
+</a>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=00C7B7&center=true&vCenter=true&width=700&lines=Smart+Timetable+Management;Automated+Academic+Scheduling;Faculty+%7C+Subjects+%7C+Classrooms;Built+to+Simplify+College+Scheduling" alt="Animated typing introduction"/>
+<br/><br/>
 
-<br/>
-
-**A web-based solution designed to simplify academic scheduling, manage faculty workloads, and organize college timetables efficiently.**
+<img src="https://img.shields.io/badge/Project-Academic_Scheduling-0891B2?style=flat-square"/>
+<img src="https://img.shields.io/badge/Status-Deployed-22C55E?style=flat-square"/>
+<img src="https://img.shields.io/badge/Platform-Web_Application-6366F1?style=flat-square"/>
 
 </div>
 
@@ -23,102 +33,208 @@
 
 ## 📌 About the Project
 
-The **College Timetable Management System** is a web application developed to streamline timetable creation and academic scheduling for engineering colleges.
+The **College Timetable Management System** is a web application designed to simplify timetable preparation and academic scheduling for engineering colleges.
 
-Traditional timetable preparation involves manually coordinating faculty availability, subjects, divisions, practical batches, classrooms, and weekly teaching loads. This process can be time-consuming and prone to scheduling conflicts.
+Creating college timetables involves coordinating faculty members, subjects, divisions, practical batches, classrooms, laboratories, and weekly teaching loads. Managing these constraints manually can be time-consuming and may lead to scheduling conflicts.
 
-This project aims to simplify the process through centralized academic data management and automated timetable generation.
+This project aims to centralize academic scheduling and streamline timetable management through a web-based platform.
 
-The system is designed with scalability in mind, allowing it to support multiple academic years, divisions, faculty members, subjects, and laboratories.
+### 🎯 Project Objectives
+
+- Simplify academic timetable preparation.
+- Organize faculty, subjects, classrooms, and practical batches.
+- Manage weekly faculty teaching loads.
+- Reduce timetable clashes and scheduling conflicts.
+- Support structured academic scheduling across divisions.
+- Provide a foundation for department-wide timetable management.
+
+---
+
+## 🖥️ Application Screenshots
+
+<div align="center">
+
+### 🔐 Login Page
+
+<img src="screenshots/login.png" alt="College Timetable Management System Login Page" width="85%"/>
+
+*Application login interface.*
+
+### 📊 Dashboard
+
+<img src="screenshots/dashboard.png" alt="College Timetable Management System Dashboard" width="85%"/>
+
+*Centralized academic management dashboard.*
+
+### 👨‍🏫 Faculty Management
+
+<img src="screenshots/faculty-management.png" alt="Faculty Management Interface" width="85%"/>
+
+*Faculty information and teaching assignment management.*
+
+### 📅 Timetable Generation
+
+<img src="screenshots/timetable.png" alt="Generated College Timetable" width="95%"/>
+
+*Academic timetable and scheduling interface.*
+
+</div>
+
+> **Screenshot setup:** Create a `screenshots` folder in your repository and add your actual screenshots using the filenames shown above. Until those files exist, the images will not display. Replace the filenames if your screenshots use different names.
+
+---
 
 ## ✨ Key Features
 
-| Feature | Description |
-|---|---|
-| 📅 Timetable Management | Organize and manage academic schedules. |
-| 👨‍🏫 Faculty Management | Maintain faculty information and teaching assignments. |
-| 📚 Subject Management | Organize subjects and their associated teaching requirements. |
-| 🏫 Classroom Management | Manage classrooms and laboratory resources. |
-| 👥 Division & Batch Management | Organize classes, divisions, and practical batches. |
-| ⚖️ Faculty Workload | Track weekly teaching loads and assignment requirements. |
-| 🤖 Automated Scheduling | Support timetable generation while considering scheduling constraints. |
-| 🔍 Conflict Reduction | Help identify and prevent overlapping timetable assignments. |
-| 🌐 Web-Based Access | Access the application through a browser. |
-| 📈 Scalable Architecture | Designed with the potential to expand across departments. |
+<table>
+<tr>
+<td width="50%">
 
-> **Note:** The availability of individual features depends on the current implementation. Refer to the source code for the exact functionality.
+### 📅 Timetable Management
+Organize academic schedules for classes and divisions.
 
-## 🛠️ Tech Stack
+</td>
+<td width="50%">
 
-The project uses modern web development technologies.
+### 👨‍🏫 Faculty Management
+Maintain faculty information and teaching assignments.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📚 Subject Management
+Manage subjects and their associated academic requirements.
+
+</td>
+<td width="50%">
+
+### 🏫 Classroom & Laboratory Management
+Organize teaching spaces and practical-session resources.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 👥 Division & Batch Management
+Structure academic divisions and practical batches.
+
+</td>
+<td width="50%">
+
+### ⚖️ Faculty Workload Management
+Track and organize weekly teaching-load requirements.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🤖 Timetable Scheduling
+Generate schedules according to the constraints supported by the application.
+
+</td>
+<td width="50%">
+
+### 🌐 Web-Based Access
+Access the application through a browser.
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Technology Stack
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=nextjs,react,typescript,javascript,nodejs,git,github,vercel&perline=8" alt="Technology Stack"/>
+
+</div>
+
+The project uses a modern web-development stack. Verify the repository's dependencies before treating every icon above as a confirmed project dependency.
 
 | Technology | Purpose |
 |---|---|
 | Next.js | Web application framework |
-| React | User interface |
-| JavaScript / TypeScript | Application logic |
-| Backend API | Server-side operations |
-| Constraint Optimization | Timetable scheduling logic |
+| React | Component-based user interface |
+| TypeScript / JavaScript | Application logic |
+| Node.js | JavaScript runtime for supported server-side components |
+| Backend API | Communication between application components |
 | Vercel | Frontend deployment |
-| Render | Backend hosting, where configured |
 
-*Verify the repository's actual dependencies and deployment configuration before treating this list as the definitive technology stack.*
+---
 
-## 🧠 How It Works
+## 🧠 How the Scheduling System Works
 
-```text
-       ┌───────────────────────────┐
-       │     Academic Setup        │
-       │ Faculty, Subjects, Rooms  │
-       │ Divisions, Batches        │
-       └─────────────┬─────────────┘
-                     │
-                     ▼
-       ┌───────────────────────────┐
-       │  Scheduling Requirements  │
-       │ Workload & Time Constraints│
-       └─────────────┬─────────────┘
-                     │
-                     ▼
-       ┌───────────────────────────┐
-       │   Timetable Generation    │
-       │ Constraint-Based Planning │
-       └─────────────┬─────────────┘
-                     │
-                     ▼
-       ┌───────────────────────────┐
-       │  Organized Timetable      │
-       │ Classes, Labs & Batches   │
-       └───────────────────────────┘
+The timetable-generation process involves collecting academic requirements, assigning teaching sessions to suitable time slots, and organizing the resulting schedule.
+
+```mermaid
+flowchart TD
+    A([Start]) --> B[Load Academic Information]
+    B --> C[Faculty and Subjects]
+    C --> D[Divisions and Practical Batches]
+    D --> E[Classrooms and Laboratories]
+    E --> F[Define Scheduling Requirements]
+    F --> G[Assign Teaching Sessions to Time Slots]
+    G --> H{Scheduling Constraints Satisfied?}
+    H -- No --> I[Revise Assignments]
+    I --> G
+    H -- Yes --> J[Prepare Timetable]
+    J --> K[Display or Manage Schedule]
+    K --> L([End])
+
+    style A fill:#0891B2,color:#ffffff,stroke:#0891B2
+    style L fill:#0891B2,color:#ffffff,stroke:#0891B2
+    style H fill:#7C3AED,color:#ffffff,stroke:#7C3AED
+    style J fill:#059669,color:#ffffff,stroke:#059669
 ```
 
-## 🚀 Live Demo
+### Scheduling Considerations
 
-Explore the deployed application:
+A timetable-generation system may need to account for:
+
+- Faculty availability and overlapping assignments.
+- Classroom and laboratory availability.
+- Division and practical-batch requirements.
+- Subject-wise weekly teaching loads.
+- Lecture and practical-session durations.
+- Valid day and time-slot assignments.
+
+The actual scheduling algorithm and constraint-handling behavior should be documented according to the repository's implementation.
+
+---
+
+## 🚀 Live Application
 
 <div align="center">
 
 <a href="https://mmit-timetable.vercel.app/login">
-  <img src="https://img.shields.io/badge/OPEN_TIMETABLE_APPLICATION-00C7B7?style=for-the-badge&logo=vercel&logoColor=white" alt="Open Application"/>
+  <img src="https://img.shields.io/badge/OPEN_LIVE_APPLICATION-Visit_Now-00C9A7?style=for-the-badge&logo=vercel&logoColor=white" alt="Open Live Application"/>
 </a>
+
+<p>Explore the deployed College Timetable Management System.</p>
 
 </div>
 
-🔗 **Application:** https://mmit-timetable.vercel.app/login
+**Live Website:** https://mmit-timetable.vercel.app/login
 
-🔗 **Source Code:** https://github.com/YashrajAuti/college-timetable-system
+**Source Code:** https://github.com/YashrajAuti/college-timetable-system
 
-*Some application features may require authorized login credentials.*
+*Access to certain pages or functions may require authorized login credentials.*
 
-## 💻 Getting Started
+---
 
-Follow these steps to run the project locally.
+## 💻 Run Locally
 
 ### Prerequisites
 
-- Node.js and npm
+- Node.js
+- npm
 - Git
-- A code editor such as Visual Studio Code
 
 ### 1. Clone the Repository
 
@@ -126,7 +242,7 @@ Follow these steps to run the project locally.
 git clone https://github.com/YashrajAuti/college-timetable-system.git
 ```
 
-### 2. Navigate to the Project Directory
+### 2. Open the Project Directory
 
 ```bash
 cd college-timetable-system
@@ -140,109 +256,127 @@ npm install
 
 ### 4. Configure Environment Variables
 
-Check the project's environment configuration and documentation.
+Review the project's environment configuration and set the required API URLs and other environment variables.
 
-If the application requires a backend API, configure the appropriate API URL and other required environment variables before starting the application.
-
-**Do not commit passwords, API keys, or other secrets to GitHub.**
+Never commit credentials, API keys, or production secrets.
 
 ### 5. Start the Development Server
 
-For a Next.js application, run:
+For a standard Next.js application:
 
 ```bash
 npm run dev
 ```
 
-Open the local address displayed in your terminal, typically:
+Open the local URL displayed in your terminal. It is commonly:
 
 ```text
 http://localhost:3000
 ```
 
-> These instructions assume the repository's root package contains a standard Next.js application. Follow the actual package scripts and backend setup if your project uses a different configuration.
+> **Note:** These commands assume the root directory contains the Next.js application. If the frontend and backend have separate package files, follow the setup instructions for each component.
+
+---
 
 ## 📂 Project Structure
 
-The exact directory structure depends on the current repository.
-
-A typical Next.js application may follow this structure:
+A typical Next.js application may contain the following directories. Adjust this section to match your actual repository.
 
 ```text
 college-timetable-system/
 │
-├── app/                 # Application routes and pages
+├── app/                 # Application routes
 ├── components/          # Reusable UI components
 ├── public/              # Static assets
 ├── lib/                 # Shared utilities
 ├── package.json         # Dependencies and scripts
-├── next.config.js       # Next.js configuration, if used
 ├── .gitignore           # Git exclusions
+├── screenshots/         # README screenshots
 └── README.md            # Project documentation
 ```
 
-*Update this tree to match the actual repository structure.*
+---
 
-## 🎯 Project Objectives
+## 📈 GitHub Statistics
 
-- Reduce the effort required to prepare academic timetables.
-- Organize faculty, subjects, classrooms, and practical batches.
-- Manage weekly teaching-load requirements.
-- Minimize timetable clashes and resource conflicts.
-- Provide a centralized platform for academic scheduling.
-- Establish a foundation for expanding timetable management across departments.
+<div align="center">
+
+<a href="https://github.com/YashrajAuti">
+  <img height="180" src="https://github-readme-stats.vercel.app/api?username=YashrajAuti&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github" alt="GitHub Profile Statistics"/>
+</a>
+
+<a href="https://github.com/YashrajAuti">
+  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=YashrajAuti&layout=compact&theme=tokyonight&hide_border=true" alt="Most Used Programming Languages"/>
+</a>
+
+<br/>
+
+<img src="https://streak-stats.demolab.com?user=YashrajAuti&theme=tokyonight&hide_border=true" alt="GitHub Contribution Streak"/>
+
+</div>
+
+---
 
 ## 🔮 Future Enhancements
 
-Potential improvements include:
+Potential improvements for future versions include:
 
-- 📊 Advanced faculty workload analytics.
 - 📄 Export timetables to PDF and Excel.
+- 📊 Faculty workload analytics.
+- 🔄 Timetable adjustments when faculty or rooms become unavailable.
 - 🔔 Notifications for timetable changes.
-- 🔄 Automatic rescheduling when faculty or rooms become unavailable.
-- 🏢 Multi-department and college-wide scheduling.
-- 📱 Improved mobile responsiveness.
-- 📈 Scheduling reports and utilization analytics.
+- 🏢 Scheduling support for multiple departments.
+- 📱 Further improvements to mobile usability.
+- 📈 Classroom utilization and scheduling reports.
+
+---
 
 ## 👨‍💻 Developer
 
 <div align="center">
 
+<img src="https://github.com/YashrajAuti.png" width="120" alt="Yashraj Auti GitHub Avatar" style="border-radius:50%;"/>
+
 ### Yashraj Auti
 
-Computer Engineering Student | Web Developer
+**Computer Engineering Student | Web Developer**
 
 <a href="https://github.com/YashrajAuti">
-  <img src="https://img.shields.io/badge/GitHub-YashrajAuti-181717?style=for-the-badge&logo=github" alt="GitHub Profile"/>
+  <img src="https://img.shields.io/badge/GitHub-Follow_Me-181717?style=for-the-badge&logo=github" alt="Follow on GitHub"/>
 </a>
 
-**Building practical software solutions for real-world problems.**
+*Building practical software solutions for real-world problems.*
 
 </div>
 
-## 🤝 Contributing
+---
+
+## 🤝 Contributions
 
 Suggestions, bug reports, and improvements are welcome.
 
 1. Fork the repository.
 2. Create a feature branch.
-3. Implement and test your changes.
-4. Submit a pull request describing your improvements.
+3. Make your changes.
+4. Test the changes.
+5. Submit a pull request describing your improvements.
+
+---
 
 ## 📄 License
 
-A license has not been specified here. Check the repository for an existing license before reusing or distributing the project.
+Refer to the license included in the repository, if any, for the terms governing use and distribution.
 
 ---
 
 <div align="center">
 
-### ⭐ Found this project interesting?
+### ⭐ Thanks for visiting!
 
-Visit the live application and explore the repository.
+If you find this project useful, consider visiting the live application and exploring the source code.
 
-**Designed to make academic scheduling more organized and efficient.**
+**College Timetable Management System**
 
-<img src="https://img.shields.io/badge/Made%20with-❤️-red?style=flat-square" alt="Made with love"/>
+<sub>Developed by Yashraj Auti</sub>
 
 </div>
